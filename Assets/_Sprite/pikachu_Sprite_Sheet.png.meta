@@ -1,0 +1,3614 @@
+fileFormatVersion: 2
+guid: 094c4e728c5655743af7fd417684e6f2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5786623580013926988
+    second: pikachu_Sprite_Sheet_0
+  - first:
+      213: -8638599627363772824
+    second: pikachu_Sprite_Sheet_1
+  - first:
+      213: 2853955745297635319
+    second: pikachu_Sprite_Sheet_2
+  - first:
+      213: -5469838331086859506
+    second: pikachu_Sprite_Sheet_3
+  - first:
+      213: -8764863991230773197
+    second: pikachu_Sprite_Sheet_4
+  - first:
+      213: 7651962926682845149
+    second: pikachu_Sprite_Sheet_5
+  - first:
+      213: 8460558301549071592
+    second: pikachu_Sprite_Sheet_6
+  - first:
+      213: 3963285960090102213
+    second: pikachu_Sprite_Sheet_7
+  - first:
+      213: 2633072501165411592
+    second: pikachu_Sprite_Sheet_8
+  - first:
+      213: 7461136314926884974
+    second: pikachu_Sprite_Sheet_9
+  - first:
+      213: -3643403691472564163
+    second: pikachu_Sprite_Sheet_10
+  - first:
+      213: -6159737623410793663
+    second: pikachu_Sprite_Sheet_11
+  - first:
+      213: -8754016725226151883
+    second: pikachu_Sprite_Sheet_12
+  - first:
+      213: -3192609800104170089
+    second: pikachu_Sprite_Sheet_13
+  - first:
+      213: -3770908659677579938
+    second: pikachu_Sprite_Sheet_14
+  - first:
+      213: 4774157562150973127
+    second: pikachu_Sprite_Sheet_15
+  - first:
+      213: 8061469084375162705
+    second: pikachu_Sprite_Sheet_16
+  - first:
+      213: -6283576748818986168
+    second: pikachu_Sprite_Sheet_17
+  - first:
+      213: 6669065574576297961
+    second: pikachu_Sprite_Sheet_18
+  - first:
+      213: -8914864015742373159
+    second: pikachu_Sprite_Sheet_19
+  - first:
+      213: 6748389485527344428
+    second: pikachu_Sprite_Sheet_20
+  - first:
+      213: 7968151088640551487
+    second: pikachu_Sprite_Sheet_21
+  - first:
+      213: -448871499665206089
+    second: pikachu_Sprite_Sheet_22
+  - first:
+      213: -1784814055001325633
+    second: pikachu_Sprite_Sheet_23
+  - first:
+      213: 5027898912761879507
+    second: pikachu_Sprite_Sheet_24
+  - first:
+      213: 2555499616901701206
+    second: pikachu_Sprite_Sheet_25
+  - first:
+      213: -6059064736114457854
+    second: pikachu_Sprite_Sheet_26
+  - first:
+      213: 8671554019093797699
+    second: pikachu_Sprite_Sheet_27
+  - first:
+      213: -5767007867873103318
+    second: pikachu_Sprite_Sheet_28
+  - first:
+      213: 1081800789048741257
+    second: pikachu_Sprite_Sheet_29
+  - first:
+      213: 8413397610575229546
+    second: pikachu_Sprite_Sheet_30
+  - first:
+      213: 3360418401856443209
+    second: pikachu_Sprite_Sheet_31
+  - first:
+      213: 468416617765210809
+    second: pikachu_Sprite_Sheet_32
+  - first:
+      213: -141623151272531762
+    second: pikachu_Sprite_Sheet_33
+  - first:
+      213: -3104267510120625899
+    second: pikachu_Sprite_Sheet_34
+  - first:
+      213: -196914573026008379
+    second: pikachu_Sprite_Sheet_35
+  - first:
+      213: -49515341484460695
+    second: pikachu_Sprite_Sheet_36
+  - first:
+      213: 2979740394649482696
+    second: pikachu_Sprite_Sheet_37
+  - first:
+      213: 5744289855340503860
+    second: pikachu_Sprite_Sheet_38
+  - first:
+      213: -2482841267203812205
+    second: pikachu_Sprite_Sheet_39
+  - first:
+      213: 22244779334460651
+    second: pikachu_Sprite_Sheet_40
+  - first:
+      213: 755361499200933460
+    second: pikachu_Sprite_Sheet_41
+  - first:
+      213: -3727292794019550663
+    second: pikachu_Sprite_Sheet_42
+  - first:
+      213: -2636490987830018350
+    second: pikachu_Sprite_Sheet_43
+  - first:
+      213: 170876055727634812
+    second: pikachu_Sprite_Sheet_44
+  - first:
+      213: 2541685768134750279
+    second: pikachu_Sprite_Sheet_45
+  - first:
+      213: -658263557677844381
+    second: pikachu_Sprite_Sheet_46
+  - first:
+      213: -6920945464780629478
+    second: pikachu_Sprite_Sheet_47
+  - first:
+      213: -2463285156610806124
+    second: pikachu_Sprite_Sheet_48
+  - first:
+      213: 1467245043233349073
+    second: pikachu_Sprite_Sheet_49
+  - first:
+      213: 799651095642510291
+    second: pikachu_Sprite_Sheet_50
+  - first:
+      213: -8817978184094013158
+    second: pikachu_Sprite_Sheet_51
+  - first:
+      213: 3611381494138461501
+    second: pikachu_Sprite_Sheet_52
+  - first:
+      213: 6876181903559497888
+    second: pikachu_Sprite_Sheet_53
+  - first:
+      213: -6490141634012984623
+    second: pikachu_Sprite_Sheet_54
+  - first:
+      213: -8761019557427737219
+    second: pikachu_Sprite_Sheet_55
+  - first:
+      213: -1678587691309091834
+    second: pikachu_Sprite_Sheet_56
+  - first:
+      213: 7834794120530165375
+    second: pikachu_Sprite_Sheet_57
+  - first:
+      213: 2024460688651313055
+    second: pikachu_Sprite_Sheet_58
+  - first:
+      213: 8753319735699693244
+    second: pikachu_Sprite_Sheet_59
+  - first:
+      213: 2397505954452605298
+    second: pikachu_Sprite_Sheet_60
+  - first:
+      213: -901170720659149285
+    second: pikachu_Sprite_Sheet_61
+  - first:
+      213: -1448243055343762546
+    second: pikachu_Sprite_Sheet_62
+  - first:
+      213: -6863433901003854211
+    second: pikachu_Sprite_Sheet_63
+  - first:
+      213: -121639564499601003
+    second: pikachu_Sprite_Sheet_64
+  - first:
+      213: 2684948040805618586
+    second: pikachu_Sprite_Sheet_65
+  - first:
+      213: 3961877042963452894
+    second: pikachu_Sprite_Sheet_66
+  - first:
+      213: 1345248787547835121
+    second: pikachu_Sprite_Sheet_67
+  - first:
+      213: 798202165126940432
+    second: pikachu_Sprite_Sheet_68
+  - first:
+      213: -8255687381757574
+    second: pikachu_Sprite_Sheet_69
+  - first:
+      213: -8618131176487933970
+    second: pikachu_Sprite_Sheet_70
+  - first:
+      213: -6867888905593021465
+    second: pikachu_Sprite_Sheet_71
+  - first:
+      213: 6982517119057017613
+    second: pikachu_Sprite_Sheet_72
+  - first:
+      213: -7610509464002427527
+    second: pikachu_Sprite_Sheet_73
+  - first:
+      213: 1800127302283476427
+    second: pikachu_Sprite_Sheet_74
+  - first:
+      213: -8171813949312042162
+    second: pikachu_Sprite_Sheet_75
+  - first:
+      213: -1286245882001943211
+    second: pikachu_Sprite_Sheet_76
+  - first:
+      213: -4805294130718054119
+    second: pikachu_Sprite_Sheet_77
+  - first:
+      213: 5474292406398981249
+    second: pikachu_Sprite_Sheet_78
+  - first:
+      213: 380577518900053698
+    second: pikachu_Sprite_Sheet_79
+  - first:
+      213: -2659731752143119914
+    second: pikachu_Sprite_Sheet_80
+  - first:
+      213: -1084549088355799075
+    second: pikachu_Sprite_Sheet_81
+  - first:
+      213: 2245563606783044003
+    second: pikachu_Sprite_Sheet_82
+  - first:
+      213: -6117468195074953472
+    second: pikachu_Sprite_Sheet_83
+  - first:
+      213: 3387919705283531734
+    second: pikachu_Sprite_Sheet_84
+  - first:
+      213: -8611510198414597465
+    second: pikachu_Sprite_Sheet_85
+  - first:
+      213: 1189514723439434024
+    second: pikachu_Sprite_Sheet_86
+  - first:
+      213: 6586975420640183738
+    second: pikachu_Sprite_Sheet_87
+  - first:
+      213: 6889244320126611716
+    second: pikachu_Sprite_Sheet_88
+  - first:
+      213: 7718643187904743483
+    second: pikachu_Sprite_Sheet_89
+  - first:
+      213: 3139908865822847287
+    second: pikachu_Sprite_Sheet_90
+  - first:
+      213: 2333550140185194440
+    second: pikachu_Sprite_Sheet_91
+  - first:
+      213: 4650404547657371480
+    second: pikachu_Sprite_Sheet_92
+  - first:
+      213: -2969441896586320662
+    second: pikachu_Sprite_Sheet_93
+  - first:
+      213: -8845188283783864789
+    second: pikachu_Sprite_Sheet_94
+  - first:
+      213: -9127149302849246245
+    second: pikachu_Sprite_Sheet_95
+  - first:
+      213: -7410243616968637486
+    second: pikachu_Sprite_Sheet_96
+  - first:
+      213: 371498939717299995
+    second: pikachu_Sprite_Sheet_97
+  - first:
+      213: -9148570719196624835
+    second: pikachu_Sprite_Sheet_98
+  - first:
+      213: -2802570838216397393
+    second: pikachu_Sprite_Sheet_99
+  - first:
+      213: -948882782449110016
+    second: pikachu_Sprite_Sheet_100
+  - first:
+      213: -3475110469741136106
+    second: pikachu_Sprite_Sheet_101
+  - first:
+      213: 7457088922438042569
+    second: pikachu_Sprite_Sheet_102
+  - first:
+      213: -2168590931393116147
+    second: pikachu_Sprite_Sheet_103
+  - first:
+      213: 2602752219914951281
+    second: pikachu_Sprite_Sheet_104
+  - first:
+      213: 4713924074626809028
+    second: pikachu_Sprite_Sheet_105
+  - first:
+      213: -2220521916701420221
+    second: pikachu_Sprite_Sheet_106
+  - first:
+      213: 2631576692211784224
+    second: pikachu_Sprite_Sheet_107
+  - first:
+      213: 983744712106304217
+    second: pikachu_Sprite_Sheet_108
+  - first:
+      213: 4932533241372937208
+    second: pikachu_Sprite_Sheet_109
+  - first:
+      213: 980415631319117725
+    second: pikachu_Sprite_Sheet_110
+  - first:
+      213: 4828301212192973395
+    second: pikachu_Sprite_Sheet_111
+  - first:
+      213: 2938458719687059254
+    second: pikachu_Sprite_Sheet_112
+  - first:
+      213: 1349741836054417485
+    second: pikachu_Sprite_Sheet_113
+  - first:
+      213: -8304483138243153061
+    second: pikachu_Sprite_Sheet_114
+  - first:
+      213: 8088819868967991697
+    second: pikachu_Sprite_Sheet_115
+  - first:
+      213: 2070639992463371699
+    second: pikachu_Sprite_Sheet_116
+  - first:
+      213: -8868822479038483588
+    second: pikachu_Sprite_Sheet_117
+  - first:
+      213: 7837333768807380502
+    second: pikachu_Sprite_Sheet_118
+  - first:
+      213: -5240110914767764615
+    second: pikachu_Sprite_Sheet_119
+  - first:
+      213: -3809929971798237309
+    second: pikachu_Sprite_Sheet_120
+  - first:
+      213: -1649656558211212974
+    second: pikachu_Sprite_Sheet_121
+  - first:
+      213: -4508322400802361371
+    second: pikachu_Sprite_Sheet_122
+  - first:
+      213: -8264461568591204361
+    second: pikachu_Sprite_Sheet_123
+  - first:
+      213: 8589641149100487541
+    second: pikachu_Sprite_Sheet_124
+  - first:
+      213: 5729927040267482653
+    second: pikachu_Sprite_Sheet_125
+  - first:
+      213: 1184819938069138774
+    second: pikachu_Sprite_Sheet_126
+  - first:
+      213: 8312903209634491119
+    second: pikachu_Sprite_Sheet_127
+  - first:
+      213: -4438129221493531848
+    second: pikachu_Sprite_Sheet_128
+  - first:
+      213: -2782045334339468522
+    second: pikachu_Sprite_Sheet_129
+  - first:
+      213: 604381518848050024
+    second: pikachu_Sprite_Sheet_130
+  - first:
+      213: 4970156627182877719
+    second: pikachu_Sprite_Sheet_131
+  - first:
+      213: -1734781603484353118
+    second: pikachu_Sprite_Sheet_132
+  - first:
+      213: 1919119175178672667
+    second: pikachu_Sprite_Sheet_133
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 874
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b5ee584388c1bfa0800000000000000
+      internalID: -5786623580013926988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 874
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 866192e78678d1880800000000000000
+      internalID: -8638599627363772824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 874
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f7962321a94b9720800000000000000
+      internalID: 2853955745297635319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 875
+        width: 34
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0390c0b40b3714b0800000000000000
+      internalID: -5469838331086859506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 866
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 338c31263a2fc5680800000000000000
+      internalID: -8764863991230773197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 866
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddfa36f6dbb313a60800000000000000
+      internalID: 7651962926682845149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 866
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ec805503f0f96570800000000000000
+      internalID: 8460558301549071592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 866
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c9a672159b600730800000000000000
+      internalID: 3963285960090102213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 866
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80d40db3d7d8a8420800000000000000
+      internalID: 2633072501165411592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 866
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e68ebf792f74b8760800000000000000
+      internalID: 7461136314926884974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 845
+        width: 21
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d305e6c65a7007dc0800000000000000
+      internalID: -3643403691472564163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 849
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 143adf66447348aa0800000000000000
+      internalID: -6159737623410793663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 849
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 530211f4b2c738680800000000000000
+      internalID: -8754016725226151883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 849
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79d2c5e4d4291b3d0800000000000000
+      internalID: -3192609800104170089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 849
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e55397b9d8a0babc0800000000000000
+      internalID: -3770908659677579938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 849
+        width: 92
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cee0c91207314240800000000000000
+      internalID: 4774157562150973127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 848
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15f99f5bb6710ef60800000000000000
+      internalID: 8061469084375162705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 849
+        width: 23
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84b8dbf1d304cc8a0800000000000000
+      internalID: -6283576748818986168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 849
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e7186c4ec74d8c50800000000000000
+      internalID: 6669065574576297961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 849
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d273c0296a084480800000000000000
+      internalID: -8914864015742373159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 849
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c25a6da8b7817ad50800000000000000
+      internalID: 6748389485527344428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 849
+        width: 44
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3aef03b23f849e60800000000000000
+      internalID: 7968151088640551487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 845
+        width: 90
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b498a0dfb945c9f0800000000000000
+      internalID: -448871499665206089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 822
+        width: 111
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbf7585c2111b37e0800000000000000
+      internalID: -1784814055001325633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 823
+        width: 113
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3db9eb51c6fa6c540800000000000000
+      internalID: 5027898912761879507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 828
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65e9219ac55f67320800000000000000
+      internalID: 2555499616901701206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 822
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2034dcc89b0e9eba0800000000000000
+      internalID: -6059064736114457854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 829
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34b52bebf6c875870800000000000000
+      internalID: 8671554019093797699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 827
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a227a8a26e877ffa0800000000000000
+      internalID: -5767007867873103318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 827
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98dccf40614530f00800000000000000
+      internalID: 1081800789048741257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 827
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a62f47cfc8462c470800000000000000
+      internalID: 8413397610575229546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 829
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 943d6537bba92ae20800000000000000
+      internalID: 3360418401856443209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 822
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ba09cc9e66208600800000000000000
+      internalID: 468416617765210809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 827
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec8ed688e7ad80ef0800000000000000
+      internalID: -141623151272531762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 804
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 519497b852d6be4d0800000000000000
+      internalID: -3104267510120625899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 812
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c2efa73d3b644df0800000000000000
+      internalID: -196914573026008379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 809
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 965f2eb2f06105ff0800000000000000
+      internalID: -49515341484460695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 809
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c5f6f10a1a2a5920800000000000000
+      internalID: 2979740394649482696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 811
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 433637a5031d7bf40800000000000000
+      internalID: 5744289855340503860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 804
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 394d2aaa50d2b8dd0800000000000000
+      internalID: -2482841267203812205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_40
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 809
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be4665a42870f4000800000000000000
+      internalID: 22244779334460651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_41
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 800
+        width: 50
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45ec0ec08459b7a00800000000000000
+      internalID: 755361499200933460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_42
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 800
+        width: 40
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93a679ea3fef54cc0800000000000000
+      internalID: -3727292794019550663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_43
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 799
+        width: 41
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2de7fd05a6d496bd0800000000000000
+      internalID: -2636490987830018350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_44
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 796
+        width: 29
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c79f34a0ed21f5200800000000000000
+      internalID: 170876055727634812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_45
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 800
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 740765c5db1e54320800000000000000
+      internalID: 2541685768134750279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_46
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 798
+        width: 84
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 368f60c28c06dd6f0800000000000000
+      internalID: -658263557677844381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_47
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 800
+        width: 8
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1a56edb4ccd3ff90800000000000000
+      internalID: -6920945464780629478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_48
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 783
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49e68bb7337a0ddd0800000000000000
+      internalID: -2463285156610806124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_49
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 785
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dd5060d793bc5410800000000000000
+      internalID: 1467245043233349073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_50
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 776
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d3160c4f6ee81b00800000000000000
+      internalID: 799651095642510291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_51
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 783
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a19aeebaf8f30a580800000000000000
+      internalID: -8817978184094013158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_52
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 785
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3dda82c5543e1230800000000000000
+      internalID: 3611381494138461501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_53
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 782
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a812ac720b1d6f50800000000000000
+      internalID: 6876181903559497888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_54
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 774
+        width: 47
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dacea2f1926ee5a0800000000000000
+      internalID: -6490141634012984623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_55
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 766
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7d0541612b9a6680800000000000000
+      internalID: -8761019557427737219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_56
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 764
+        width: 59
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 604bd27636574b8e0800000000000000
+      internalID: -1678587691309091834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_57
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 767
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7ef48afdb7cabc60800000000000000
+      internalID: 7834794120530165375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_58
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 763
+        width: 99
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9fddc03544581c10800000000000000
+      internalID: 2024460688651313055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_59
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 776
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbedbcb2ce90a7970800000000000000
+      internalID: 8753319735699693244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_60
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 740
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 279080a86f6a54120800000000000000
+      internalID: 2397505954452605298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_61
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 731
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1ee02111066e73f0800000000000000
+      internalID: -901170720659149285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_62
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 740
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e830fc14d9ec6ebe0800000000000000
+      internalID: -1448243055343762546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_63
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 731
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7eaa472b3f20c0a0800000000000000
+      internalID: -6863433901003854211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_64
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 740
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5993e57e579df4ef0800000000000000
+      internalID: -121639564499601003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_65
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 740
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a939994840ad24520800000000000000
+      internalID: 2684948040805618586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_66
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 731
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed39c9dfd2a6bf630800000000000000
+      internalID: 3961877042963452894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_67
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 732
+        width: 17
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fa405415a84ba210800000000000000
+      internalID: 1345248787547835121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_68
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 732
+        width: 23
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 017c65fd3a8c31b00800000000000000
+      internalID: 798202165126940432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_69
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 731
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a71db3efe7ba2eff0800000000000000
+      internalID: -8255687381757574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_70
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 732
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee7a7b51b5f366880800000000000000
+      internalID: -8618131176487933970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_71
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 731
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7eb18419d6b50b0a0800000000000000
+      internalID: -6867888905593021465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_72
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 731
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0b3a772352e6e060800000000000000
+      internalID: 6982517119057017613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_73
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 731
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9750366f6f9026690800000000000000
+      internalID: -7610509464002427527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_74
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 697
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcdb6137e365bf810800000000000000
+      internalID: 1800127302283476427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_75
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 697
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4b7cac5282e79e80800000000000000
+      internalID: -8171813949312042162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_76
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 694
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55517756f26562ee0800000000000000
+      internalID: -1286245882001943211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_77
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 686
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 919e749927a205db0800000000000000
+      internalID: -4805294130718054119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_78
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 686
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 184970880f798fb40800000000000000
+      internalID: 5474292406398981249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_79
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 686
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c6898fac35184500800000000000000
+      internalID: 380577518900053698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_80
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 686
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d99ea3301cb61bd0800000000000000
+      internalID: -2659731752143119914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_81
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 686
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddf241fa958e2f0f0800000000000000
+      internalID: -1084549088355799075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_82
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 686
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a929dee338d92f10800000000000000
+      internalID: 2245563606783044003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_83
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 688
+        width: 40
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00faecb96136a1ba0800000000000000
+      internalID: -6117468195074953472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_84
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 686
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d398f0a50f440f20800000000000000
+      internalID: 3387919705283531734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_85
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 620
+        width: 434
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a228dba915cd7880800000000000000
+      internalID: -8611510198414597465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_86
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 556
+        width: 56
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82954b1b651028010800000000000000
+      internalID: 1189514723439434024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_87
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 555
+        width: 57
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab5cc7bee33a96b50800000000000000
+      internalID: 6586975420640183738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_88
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 554
+        width: 56
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 401360855338b9f50800000000000000
+      internalID: 6889244320126611716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_89
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 555
+        width: 57
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b380d0395112e1b60800000000000000
+      internalID: 7718643187904743483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_90
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 556
+        width: 56
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 731787e3a72339b20800000000000000
+      internalID: 3139908865822847287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_91
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 554
+        width: 56
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cf2d432d7f626020800000000000000
+      internalID: 2333550140185194440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_92
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 554
+        width: 61
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85f8af41c4e898040800000000000000
+      internalID: 4650404547657371480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_93
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 488
+        width: 59
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae46fcce35c6ac6d0800000000000000
+      internalID: -2969441896586320662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_94
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 488
+        width: 61
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2e9d95ae149f3580800000000000000
+      internalID: -8845188283783864789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_95
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 425
+        width: 63
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdb67b7111ad55180800000000000000
+      internalID: -9127149302849246245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_96
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 488
+        width: 52
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d38a7701b6892990800000000000000
+      internalID: -7410243616968637486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_97
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 488
+        width: 60
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1fa8404154d72500800000000000000
+      internalID: 371498939717299995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_98
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 422
+        width: 53
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d38cebfe66fb90180800000000000000
+      internalID: -9148570719196624835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_99
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 488
+        width: 56
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fad2e3adba44b19d0800000000000000
+      internalID: -2802570838216397393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_100
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 488
+        width: 61
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 004f2a20324e4d2f0800000000000000
+      internalID: -948882782449110016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_101
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 423
+        width: 59
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 617b6df807de5cfc0800000000000000
+      internalID: -3475110469741136106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_102
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 488
+        width: 61
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c38b689dd6ec7760800000000000000
+      internalID: 7457088922438042569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_103
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 422
+        width: 56
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d080e2f990e97e1e0800000000000000
+      internalID: -2168590931393116147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_104
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 424
+        width: 64
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17ad362aa55de1420800000000000000
+      internalID: 2602752219914951281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_105
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 422
+        width: 65
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ccfa4e68f83b6140800000000000000
+      internalID: 4713924074626809028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_106
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 422
+        width: 59
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 345da03e41f1f21e0800000000000000
+      internalID: -2220521916701420221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_107
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 357
+        width: 61
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02a1b721f0d358420800000000000000
+      internalID: 2631576692211784224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_108
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 356
+        width: 58
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d2e3c28a96f6ad00800000000000000
+      internalID: 983744712106304217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_109
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 356
+        width: 62
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fb07de69d0e37440800000000000000
+      internalID: 4932533241372937208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_110
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 356
+        width: 62
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9f240d72d22b9d00800000000000000
+      internalID: 980415631319117725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_111
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 356
+        width: 56
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 352a95dfe52910340800000000000000
+      internalID: 4828301212192973395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_112
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 356
+        width: 56
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 637a81e03a087c820800000000000000
+      internalID: 2938458719687059254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_113
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 356
+        width: 56
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d40d1847c0f3bb210800000000000000
+      internalID: 1349741836054417485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_114
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 292
+        width: 65
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b53bbc5b59c80cc80800000000000000
+      internalID: -8304483138243153061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_115
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 275
+        width: 60
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19975fd70d2414070800000000000000
+      internalID: 8088819868967991697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_116
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 299
+        width: 49
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bd2f783a146cbc10800000000000000
+      internalID: 2070639992463371699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_117
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 279
+        width: 45
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7379e0c1fc9be480800000000000000
+      internalID: -8868822479038483588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_118
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 313
+        width: 62
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 616ffebe98dc3cc60800000000000000
+      internalID: 7837333768807380502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_119
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 229
+        width: 19
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 973ce95e2e26747b0800000000000000
+      internalID: -5240110914767764615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_120
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 229
+        width: 7
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38f1ad360e8602bc0800000000000000
+      internalID: -3809929971798237309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_121
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 229
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2595d6eb91e3b19e0800000000000000
+      internalID: -1649656558211212974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_122
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 229
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ef2d3f99a83f61c0800000000000000
+      internalID: -4508322400802361371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_123
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 221
+        width: 25
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ffe0488dfbbe4d80800000000000000
+      internalID: -8264461568591204361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_124
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 234
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57376308d19843770800000000000000
+      internalID: 8589641149100487541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_125
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 229
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d167c00e84ac48f40800000000000000
+      internalID: 5729927040267482653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_126
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 229
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65d496bc473517010800000000000000
+      internalID: 1184819938069138774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_127
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 221
+        width: 25
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: feae77eec6d5d5370800000000000000
+      internalID: 8312903209634491119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_128
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 234
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83bd89dbcf89862c0800000000000000
+      internalID: -4438129221493531848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_129
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 169
+        width: 106
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 613c9a122803469d0800000000000000
+      internalID: -2782045334339468522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_130
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 163
+        width: 90
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 863cfbb0ac1336800800000000000000
+      internalID: 604381518848050024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_131
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 51
+        width: 90
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71cf9419e1b89f440800000000000000
+      internalID: 4970156627182877719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_132
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 5
+        width: 156
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2adbe69a251dce7e0800000000000000
+      internalID: -1734781603484353118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pikachu_Sprite_Sheet_133
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 5
+        width: 156
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1a5a2ec8b412aa10800000000000000
+      internalID: 1919119175178672667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      pikachu_Sprite_Sheet_0: -5786623580013926988
+      pikachu_Sprite_Sheet_1: -8638599627363772824
+      pikachu_Sprite_Sheet_10: -3643403691472564163
+      pikachu_Sprite_Sheet_100: -948882782449110016
+      pikachu_Sprite_Sheet_101: -3475110469741136106
+      pikachu_Sprite_Sheet_102: 7457088922438042569
+      pikachu_Sprite_Sheet_103: -2168590931393116147
+      pikachu_Sprite_Sheet_104: 2602752219914951281
+      pikachu_Sprite_Sheet_105: 4713924074626809028
+      pikachu_Sprite_Sheet_106: -2220521916701420221
+      pikachu_Sprite_Sheet_107: 2631576692211784224
+      pikachu_Sprite_Sheet_108: 983744712106304217
+      pikachu_Sprite_Sheet_109: 4932533241372937208
+      pikachu_Sprite_Sheet_11: -6159737623410793663
+      pikachu_Sprite_Sheet_110: 980415631319117725
+      pikachu_Sprite_Sheet_111: 4828301212192973395
+      pikachu_Sprite_Sheet_112: 2938458719687059254
+      pikachu_Sprite_Sheet_113: 1349741836054417485
+      pikachu_Sprite_Sheet_114: -8304483138243153061
+      pikachu_Sprite_Sheet_115: 8088819868967991697
+      pikachu_Sprite_Sheet_116: 2070639992463371699
+      pikachu_Sprite_Sheet_117: -8868822479038483588
+      pikachu_Sprite_Sheet_118: 7837333768807380502
+      pikachu_Sprite_Sheet_119: -5240110914767764615
+      pikachu_Sprite_Sheet_12: -8754016725226151883
+      pikachu_Sprite_Sheet_120: -3809929971798237309
+      pikachu_Sprite_Sheet_121: -1649656558211212974
+      pikachu_Sprite_Sheet_122: -4508322400802361371
+      pikachu_Sprite_Sheet_123: -8264461568591204361
+      pikachu_Sprite_Sheet_124: 8589641149100487541
+      pikachu_Sprite_Sheet_125: 5729927040267482653
+      pikachu_Sprite_Sheet_126: 1184819938069138774
+      pikachu_Sprite_Sheet_127: 8312903209634491119
+      pikachu_Sprite_Sheet_128: -4438129221493531848
+      pikachu_Sprite_Sheet_129: -2782045334339468522
+      pikachu_Sprite_Sheet_13: -3192609800104170089
+      pikachu_Sprite_Sheet_130: 604381518848050024
+      pikachu_Sprite_Sheet_131: 4970156627182877719
+      pikachu_Sprite_Sheet_132: -1734781603484353118
+      pikachu_Sprite_Sheet_133: 1919119175178672667
+      pikachu_Sprite_Sheet_14: -3770908659677579938
+      pikachu_Sprite_Sheet_15: 4774157562150973127
+      pikachu_Sprite_Sheet_16: 8061469084375162705
+      pikachu_Sprite_Sheet_17: -6283576748818986168
+      pikachu_Sprite_Sheet_18: 6669065574576297961
+      pikachu_Sprite_Sheet_19: -8914864015742373159
+      pikachu_Sprite_Sheet_2: 2853955745297635319
+      pikachu_Sprite_Sheet_20: 6748389485527344428
+      pikachu_Sprite_Sheet_21: 7968151088640551487
+      pikachu_Sprite_Sheet_22: -448871499665206089
+      pikachu_Sprite_Sheet_23: -1784814055001325633
+      pikachu_Sprite_Sheet_24: 5027898912761879507
+      pikachu_Sprite_Sheet_25: 2555499616901701206
+      pikachu_Sprite_Sheet_26: -6059064736114457854
+      pikachu_Sprite_Sheet_27: 8671554019093797699
+      pikachu_Sprite_Sheet_28: -5767007867873103318
+      pikachu_Sprite_Sheet_29: 1081800789048741257
+      pikachu_Sprite_Sheet_3: -5469838331086859506
+      pikachu_Sprite_Sheet_30: 8413397610575229546
+      pikachu_Sprite_Sheet_31: 3360418401856443209
+      pikachu_Sprite_Sheet_32: 468416617765210809
+      pikachu_Sprite_Sheet_33: -141623151272531762
+      pikachu_Sprite_Sheet_34: -3104267510120625899
+      pikachu_Sprite_Sheet_35: -196914573026008379
+      pikachu_Sprite_Sheet_36: -49515341484460695
+      pikachu_Sprite_Sheet_37: 2979740394649482696
+      pikachu_Sprite_Sheet_38: 5744289855340503860
+      pikachu_Sprite_Sheet_39: -2482841267203812205
+      pikachu_Sprite_Sheet_4: -8764863991230773197
+      pikachu_Sprite_Sheet_40: 22244779334460651
+      pikachu_Sprite_Sheet_41: 755361499200933460
+      pikachu_Sprite_Sheet_42: -3727292794019550663
+      pikachu_Sprite_Sheet_43: -2636490987830018350
+      pikachu_Sprite_Sheet_44: 170876055727634812
+      pikachu_Sprite_Sheet_45: 2541685768134750279
+      pikachu_Sprite_Sheet_46: -658263557677844381
+      pikachu_Sprite_Sheet_47: -6920945464780629478
+      pikachu_Sprite_Sheet_48: -2463285156610806124
+      pikachu_Sprite_Sheet_49: 1467245043233349073
+      pikachu_Sprite_Sheet_5: 7651962926682845149
+      pikachu_Sprite_Sheet_50: 799651095642510291
+      pikachu_Sprite_Sheet_51: -8817978184094013158
+      pikachu_Sprite_Sheet_52: 3611381494138461501
+      pikachu_Sprite_Sheet_53: 6876181903559497888
+      pikachu_Sprite_Sheet_54: -6490141634012984623
+      pikachu_Sprite_Sheet_55: -8761019557427737219
+      pikachu_Sprite_Sheet_56: -1678587691309091834
+      pikachu_Sprite_Sheet_57: 7834794120530165375
+      pikachu_Sprite_Sheet_58: 2024460688651313055
+      pikachu_Sprite_Sheet_59: 8753319735699693244
+      pikachu_Sprite_Sheet_6: 8460558301549071592
+      pikachu_Sprite_Sheet_60: 2397505954452605298
+      pikachu_Sprite_Sheet_61: -901170720659149285
+      pikachu_Sprite_Sheet_62: -1448243055343762546
+      pikachu_Sprite_Sheet_63: -6863433901003854211
+      pikachu_Sprite_Sheet_64: -121639564499601003
+      pikachu_Sprite_Sheet_65: 2684948040805618586
+      pikachu_Sprite_Sheet_66: 3961877042963452894
+      pikachu_Sprite_Sheet_67: 1345248787547835121
+      pikachu_Sprite_Sheet_68: 798202165126940432
+      pikachu_Sprite_Sheet_69: -8255687381757574
+      pikachu_Sprite_Sheet_7: 3963285960090102213
+      pikachu_Sprite_Sheet_70: -8618131176487933970
+      pikachu_Sprite_Sheet_71: -6867888905593021465
+      pikachu_Sprite_Sheet_72: 6982517119057017613
+      pikachu_Sprite_Sheet_73: -7610509464002427527
+      pikachu_Sprite_Sheet_74: 1800127302283476427
+      pikachu_Sprite_Sheet_75: -8171813949312042162
+      pikachu_Sprite_Sheet_76: -1286245882001943211
+      pikachu_Sprite_Sheet_77: -4805294130718054119
+      pikachu_Sprite_Sheet_78: 5474292406398981249
+      pikachu_Sprite_Sheet_79: 380577518900053698
+      pikachu_Sprite_Sheet_8: 2633072501165411592
+      pikachu_Sprite_Sheet_80: -2659731752143119914
+      pikachu_Sprite_Sheet_81: -1084549088355799075
+      pikachu_Sprite_Sheet_82: 2245563606783044003
+      pikachu_Sprite_Sheet_83: -6117468195074953472
+      pikachu_Sprite_Sheet_84: 3387919705283531734
+      pikachu_Sprite_Sheet_85: -8611510198414597465
+      pikachu_Sprite_Sheet_86: 1189514723439434024
+      pikachu_Sprite_Sheet_87: 6586975420640183738
+      pikachu_Sprite_Sheet_88: 6889244320126611716
+      pikachu_Sprite_Sheet_89: 7718643187904743483
+      pikachu_Sprite_Sheet_9: 7461136314926884974
+      pikachu_Sprite_Sheet_90: 3139908865822847287
+      pikachu_Sprite_Sheet_91: 2333550140185194440
+      pikachu_Sprite_Sheet_92: 4650404547657371480
+      pikachu_Sprite_Sheet_93: -2969441896586320662
+      pikachu_Sprite_Sheet_94: -8845188283783864789
+      pikachu_Sprite_Sheet_95: -9127149302849246245
+      pikachu_Sprite_Sheet_96: -7410243616968637486
+      pikachu_Sprite_Sheet_97: 371498939717299995
+      pikachu_Sprite_Sheet_98: -9148570719196624835
+      pikachu_Sprite_Sheet_99: -2802570838216397393
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
