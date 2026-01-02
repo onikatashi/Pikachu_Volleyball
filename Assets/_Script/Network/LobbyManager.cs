@@ -12,6 +12,9 @@ using UnityEngine.UI;
 
 public class LobbyManager : MonoBehaviour
 {
+    [Header("닉네임 입력창")]
+    public TMP_InputField nickname;
+
     [Header("방 코드 InputField")]
     public TMP_InputField joinCode;         // 방 코드 입력 필드
 
@@ -23,6 +26,9 @@ public class LobbyManager : MonoBehaviour
     {
         try
         {
+            // 닉네임 저장
+            SaveNickname();
+
             // Relay 방 생성 (Allocation)
             Allocation allocation = await RelayService.Instance.CreateAllocationAsync(MAX_PLAYER);
             string relayJoinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
@@ -75,6 +81,9 @@ public class LobbyManager : MonoBehaviour
 
         try
         {
+            // 닉네임 저장
+            SaveNickname();
+
             // 코드로 로비 찾기
             currentLobby = await LobbyService.Instance.JoinLobbyByCodeAsync(lobbyCode);
             Debug.Log($"로비 입장 성공. 로비 ID {currentLobby.Id}");
@@ -101,6 +110,19 @@ public class LobbyManager : MonoBehaviour
         catch (System.Exception e)
         {
             Debug.LogError($"방 입장 실패: {e}");
+        }
+    }
+
+    // 플레이어 이름 저장
+    public void SaveNickname()
+    {
+        if (!string.IsNullOrEmpty(nickname.text))
+        {
+            NicknameInfo.myNickname = nickname.text;
+        }
+        else
+        {
+            NicknameInfo.myNickname = "Player";
         }
     }
 }
