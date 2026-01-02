@@ -11,6 +11,8 @@ public class NetworkBootstrap : MonoBehaviour
         // UnityService 초기화
         await UnityServices.InitializeAsync();
 
+        Debug.Log("Unity Services Initialized");
+
         // 익명 로그인 (Lobby / Relay 필수 조건)
         if (!AuthenticationService.Instance.IsSignedIn)
         {
@@ -20,6 +22,6 @@ public class NetworkBootstrap : MonoBehaviour
         Debug.Log($"플레이어 ID: { AuthenticationService.Instance.PlayerId}");
 
         // 메인 메뉴 씬으로 이동
-        SceneManager.LoadScene("MainMenuScene");
+        SceneManager.LoadScene("01_MainMenuScene");
     }
 }
