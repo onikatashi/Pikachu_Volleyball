@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 6517587028582996103}
   - component: {fileID: 5287653760676143261}
   - component: {fileID: 4726884400895426098}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pikachu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7f209e9ba8aca4146a95da613b95381c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -291,6 +291,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  shadowTransform: {fileID: 8835162859325987402}
+  groundY: 0
   moveSpeed: 5
   jumpForce: 10
   slideForce: 8

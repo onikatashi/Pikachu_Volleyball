@@ -6,6 +6,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : NetworkBehaviour
 {
+    [Header("그림자 설정")]
+    public Transform shadowTransform;   // 그림자 오브젝트
+    public float groundY;               // 그림자가 있어야할 Y좌표
+
     [Header("이동 설정")]
     public float moveSpeed = 5f;        // 움직이는 속도
     public float jumpForce = 10f;       // 점프 속도
@@ -47,13 +51,15 @@ public class PlayerController : NetworkBehaviour
         if (transform.position.x < 0)
         {
             minX = -8.5f;
-            maxX = -1.05f;
+            maxX = -1.1f;
         }
         else
         {
-            minX = 0.55f;
-            maxX = 8f;
+            minX = 1.1f;
+            maxX = 8.5f;
         }
+
+        groundY = shadowTransform.position.y;
     }
 
     public override void OnNetworkDespawn()
@@ -80,6 +86,20 @@ public class PlayerController : NetworkBehaviour
         float clampedX = Mathf.Clamp(transform.position.x, minX, maxX);
         transform.position = new Vector2(clampedX, transform.position.y);
 
+    }
+
+    private void LateUpdate()
+    {
+        if (shadowTransform == null) return;
+
+        // 현재 그림자 월드 좌표
+        Vector2 shadowPos = shadowTransform.position;
+
+        // Y좌표 강제 고정
+        shadowPos.y = groundY;
+
+        // 변경된 위치 적용
+        shadowTransform.position = shadowPos;
     }
 
     // 이동 처리
