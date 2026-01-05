@@ -47,6 +47,7 @@ public class LobbyManager : MonoBehaviour
             currentLobby = await LobbyService.Instance.CreateLobbyAsync("PikachuLobby", MAX_PLAYER, options);
 
             Debug.Log($"로비 생성 완료. Lobby Code: {currentLobby.LobbyCode}");
+            GameInfo.currentLobbyCode = currentLobby.LobbyCode;
 
             // Host로 게임 시작 (Relay 연결 설정)
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetHostRelayData(
@@ -87,6 +88,7 @@ public class LobbyManager : MonoBehaviour
             // 코드로 로비 찾기
             currentLobby = await LobbyService.Instance.JoinLobbyByCodeAsync(lobbyCode);
             Debug.Log($"로비 입장 성공. 로비 ID {currentLobby.Id}");
+            GameInfo.currentLobbyCode = currentLobby.LobbyCode;
 
             // 로비 데이터에서 Relay 코드 꺼내기
             string relayJoinCode = currentLobby.Data["RelayJoinCode"].Value;
@@ -118,11 +120,11 @@ public class LobbyManager : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(nickname.text))
         {
-            NicknameInfo.myNickname = nickname.text;
+            GameInfo.myNickname = nickname.text;
         }
         else
         {
-            NicknameInfo.myNickname = "Player";
+            GameInfo.myNickname = "Player";
         }
     }
 }

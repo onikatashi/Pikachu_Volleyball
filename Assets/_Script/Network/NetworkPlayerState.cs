@@ -22,7 +22,7 @@ public class NetworkPlayerState : NetworkBehaviour
 
         if (IsOwner)
         {
-            SetNicknameServerRpc(NicknameInfo.myNickname);
+            SetNicknameServerRpc(GameInfo.myNickname);
         }
     }
 

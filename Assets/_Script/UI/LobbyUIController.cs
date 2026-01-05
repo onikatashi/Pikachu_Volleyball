@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class LobbyUIController : MonoBehaviour
 {
+    [Header("방 정보")]
+    public TextMeshProUGUI roomCode;                // 방 코드
+    // 추후에 방 제목 생각
+
     [Header("UI 버튼")]
     public Button readyButton;                      // 준비 버튼
     public Button startButton;                      // 시작 버튼
@@ -18,6 +22,11 @@ public class LobbyUIController : MonoBehaviour
 
     private void Start()
     {
+        if (roomCode != null)
+        {
+            roomCode.text = GameInfo.currentLobbyCode;
+        }
+
         // 버튼 연결
         readyButton.onClick.AddListener(OnReadyClicked);
         startButton.onClick.AddListener(OnStartGameClicked);
