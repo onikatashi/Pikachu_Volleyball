@@ -15,6 +15,12 @@ public class BallController : NetworkBehaviour
     // 공이 날아가는 힘 (앞쪽)
     public float hitForwardFroce = 5f;
 
+    [Header("스파이크 설정")]
+    public float spikeSpeed = 18f;
+    // 잔상 설정
+
+    private bool isSpikeActive = false;             // 현재 스파이크 상태인지
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,19 +37,85 @@ public class BallController : NetworkBehaviour
         // 플레이어와 부딪혔을 때 (공 튀기기)
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Vector2 dir = Vector2.up;
-
-            // 공이 플레이어보다 왼쪽에 있으면 외쪽으로, 아니면 오른쪽으로 튐
-            if (collision.transform.position.x < transform.position.x) dir.x = 1;
-            else dir.x = -1;
-
-            rb.linearVelocity = Vector2.zero;
-            rb.linearVelocity = new Vector2(dir.x * hitForwardFroce, hitUpForce);
+            HandlePlayerCollision(collision);
         }
 
+        // 바닥에 부딪혔을 때 (점수 처리)
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             GameSetupManager.Instance.OnBallHitGround(collision.gameObject.name);
+        }
+    }
+
+    private void HandlePlayerCollision(Collision2D collision)
+    {
+        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+        if (player == null) return;
+
+        float facingDir = collision.transform.position.x < transform.position.x ? 1 : -1;
+
+        // 스파이크 상태일 때
+        if (player.isSpike.Value)
+        {
+            Vector2 input = player.inputDirection.Value;
+            Vector2 spikeDir;
+
+            // 위쪽 키가 눌렸을 때
+            if (input.y > 0)
+            {
+                // 앞 + 위 => 대각선 위 방향
+                if (Mathf.Abs(input.x) > 0)
+                {
+                    spikeDir = new Vector2(facingDir * 0.7f, 0.8f);
+                }
+                // 위 방향키만
+                else
+                {
+                    spikeDir = new Vector2(facingDir * 0.2f, 1f);
+                }
+            }
+
+            // 아래쪽 키가 눌렸을 때
+            else if (input.y < 0)
+            {
+                // 앞 + 아래 => 대각선 아래 방향
+                if (Mathf.Abs(input.x) > 0)
+                {
+                    spikeDir = new Vector2(facingDir * 0.7f, -0.8f);
+                }
+                // 아래 방향키만
+                else
+                {
+                    spikeDir = new Vector2(facingDir * 0.2f, -1f);
+                }
+            }
+
+            // 위 아래 키 안눌림 (키입력 x 또는 좌우 키입력)
+            else
+            {
+                // 앞 방향키 눌렸을 때
+                if (Mathf.Abs(input.x) > 0)
+                {
+                    spikeDir = new Vector2(facingDir * 1.0f, -0.25f);
+                }
+                // 키 입력 없음: 기본 스파이크
+                else
+                {
+                    spikeDir = new Vector2(facingDir * 0.6f, -0.6f);
+                }
+            }
+
+            // 최종 정규화 및 속도 적용
+            rb.linearVelocity = Vector2.zero;   // 기존 속도 제거
+            rb.linearVelocity = spikeDir.normalized * spikeSpeed;
+
+            
+        }
+        // 일반 타격 (리시브)
+        else
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.linearVelocity = new Vector2(facingDir * hitForwardFroce, hitUpForce);
         }
     }
 

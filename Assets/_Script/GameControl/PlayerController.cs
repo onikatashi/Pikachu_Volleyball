@@ -15,9 +15,26 @@ public class PlayerController : NetworkBehaviour
     public float jumpForce = 10f;       // 점프 속도
 
     [Header("슬라이딩 설정")]
-    public float slideForce = 8f;      // 슬라이딩 속도
+    public float slideForce = 8f;       // 슬라이딩 속도
     public float slideDuration = 0.5f;  // 슬라이딩 지속 시간
     private bool isSliding = false;     // 슬라이딩 했는지
+
+    [Header("스파이크 설정")]
+    public float spikeDuration = 0.2f;  // 공격 판정 지속 시간
+    public float spikeCooldown = 0.5f;  // 다시 쓰기까지 걸리는 시간
+    private float lastSpikeTime = -999f;    // 마지막으로 쓴 시간
+
+    // 이게 디폴트 값임
+    public NetworkVariable<bool> isSpike = new NetworkVariable<bool>(false, 
+        NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Server);
+
+    public NetworkVariable<Vector2> inputDirection = new NetworkVariable<Vector2>(Vector2.zero,
+        NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Server);
+
+
+    private Vector2 startPos;           // 시작 위치
 
     private Rigidbody2D rb;
     private bool isGrounded = false;    // 땅을 밟고 있는지
@@ -59,6 +76,7 @@ public class PlayerController : NetworkBehaviour
             maxX = 8.5f;
         }
 
+        startPos = transform.position;
         groundY = shadowTransform.position.y;
     }
 
@@ -86,6 +104,18 @@ public class PlayerController : NetworkBehaviour
         float clampedX = Mathf.Clamp(transform.position.x, minX, maxX);
         transform.position = new Vector2(clampedX, transform.position.y);
 
+        float x = InputManager.MoveInput;
+        float y = 0f;
+        if (Keyboard.current.upArrowKey.isPressed) y = 1f;
+        else if (Keyboard.current.downArrowKey.isPressed) y = -1f;
+
+        Vector2 currentDir = new Vector2(x, y);
+
+        // 입력값이 바뀌었을 때만 서버에 전송 (최적화)
+        if (currentDir != inputDirection.Value)
+        {
+            UpdateInputDirServerRpc(currentDir);
+        }
     }
 
     private void LateUpdate()
@@ -163,8 +193,52 @@ public class PlayerController : NetworkBehaviour
     // 스파이크
     private void Spike()
     {
+        // 쿨타임 체크 (로컬에서 거름)
+        if (Time.time < lastSpikeTime + spikeCooldown) return;
+
+        float x = InputManager.MoveInput;
+        float y = 0f;
+        if (Keyboard.current.upArrowKey.isPressed) y = 1f;
+        else if (Keyboard.current.downArrowKey.isPressed) y = -1f;
+
+        Vector2 currentDir = new Vector2(x, y);
+
+        StartCoroutine(SpikeCoroutine(currentDir));
+
         Debug.Log("스파이크");
         // 추후 기능 추가
+    }
+
+    private IEnumerator SpikeCoroutine(Vector2 dir)
+    {
+        lastSpikeTime = Time.time;  // 쿨타임 갱신
+
+        // 스파이크를 서버에 알림
+        SetSpikeStateServerRpc(true, dir);
+
+        // 판정 지속 시간
+        yield return new WaitForSeconds(spikeDuration);
+
+        // 스파이크 끝을 서버에 알림
+        SetSpikeStateServerRpc(false, Vector2.zero);
+    }
+
+    [ServerRpc]
+    private void SetSpikeStateServerRpc(bool state, Vector2 dir)
+    {
+        isSpike.Value = state;
+
+        // 스파이크를 할 때, 방향 정보도 강제 초기화
+        if (state)
+        {
+            inputDirection.Value = dir;
+        }
+    }
+
+    [ServerRpc]
+    private void UpdateInputDirServerRpc(Vector2 dir)
+    {
+        inputDirection.Value = dir;
     }
 
     // 바닥에 닿았을 때 체크
@@ -174,6 +248,15 @@ public class PlayerController : NetworkBehaviour
         {
             isGrounded = true;
             isSliding = false;
+        }
+    }
+
+    [ClientRpc]
+    public void ResetPlayerPositionClientRpc()
+    {
+        if (IsOwner)
+        {
+            transform.position = startPos;
         }
     }
 }

@@ -1,6 +1,9 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameSetupManager : NetworkBehaviour 
 {
@@ -15,8 +18,27 @@ public class GameSetupManager : NetworkBehaviour
     public Transform[] playerSpawnPoints;       // 0은 왼쪽, 1은 오른쪽
     public Transform[] ballSpwnPoints;          // 0은 왼쪽, 1은 오른쪽
 
+    [Header("점수 스프라이트(0~9)")]
+    public Sprite[] numberSprites;              // 0~9 숫자 스프라이트
+
+    [Header("점수 UI")]
+    // 1P 점수판
+    public Image leftTensImage;
+    public Image leftOnesImage;
+
+    // 2P 점수판
+    public Image rightTensImage;
+    public Image rightOnesImage;
+
+    // 점수 변수 (NetworkVariable)
+    private NetworkVariable<int> p1Score = new NetworkVariable<int>(0);
+    private NetworkVariable<int> p2Score = new NetworkVariable<int>(0);
+    private const int WIN_SCORE = 15;
+
     private BallController ballController;      // 현재 소환된 공을 기억해둠
     private Transform nextBallPos;              // 다음 게임 시작 됐을 때, 공 위치
+
+    private List<PlayerController> pikachus = new List<PlayerController>();
 
     private void Awake()
     {
@@ -32,12 +54,35 @@ public class GameSetupManager : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        // 점수 바뀌면 이미지 업데이트 하도록 연결
+        p1Score.OnValueChanged += (oldVal, newVal) => UpdateScoreUI();
+        p2Score.OnValueChanged += (oldVal, newVal) => UpdateScoreUI();
+
+        UpdateScoreUI();
+
         // 플레이어 생성 권한은 호스트(Server)에게만 있음.
         if (IsServer)
         {
             SpawnPlayers();
             SpawnBall();
         }
+    }
+
+    private void UpdateScoreUI()
+    {
+        int score1 = p1Score.Value;
+        int tens1 = score1 / 10;
+        int ones1 = score1 % 10;
+
+        leftTensImage.sprite = numberSprites[tens1];
+        leftOnesImage.sprite = numberSprites[ones1];
+
+        int score2 = p2Score.Value;
+        int tens2 = score2 / 10;
+        int ones2 = score2 % 10;
+
+        rightTensImage.sprite = numberSprites[tens2];
+        rightOnesImage.sprite = numberSprites[ones2];
     }
 
     // 플레이어 피카츄 소환
@@ -71,6 +116,12 @@ public class GameSetupManager : NetworkBehaviour
             // => 이 오브젝트를 네트워크 모든 사람들에게 보여주고, 조종권한은 client에게 줘라
             playerInstance.GetComponent<NetworkObject>().SpawnWithOwnership(client);
 
+            PlayerController pc = playerInstance.GetComponent<PlayerController>();
+            if (pc != null)
+            {
+                pikachus.Add(pc);
+            }
+
             index++;
         }
     }
@@ -99,16 +150,22 @@ public class GameSetupManager : NetworkBehaviour
         if (objName == "LeftGround")
         {
             nextBallPos = ballSpwnPoints[1];
-            Debug.Log("오른쪽 득점");
+            p2Score.Value++;
         }
         else
         {
             nextBallPos = ballSpwnPoints[0];
-            Debug.Log("왼쪽 득점");
+            p1Score.Value++;
+        }
+
+        if (p1Score.Value >= WIN_SCORE ||  p2Score.Value >= WIN_SCORE)
+        {
+            Debug.Log("게임 종료!");
+            yield break;
         }
 
         // 슬로우 모션 시작 (ClientRpc로 다같이 느려져야 함)
-        SetTimeScaleClientRpc(0.4f);
+        SetTimeScaleClientRpc(0.3f);
 
         // 슬로우 모션 상태로 잠시 대기 (리얼타임 기준 1초)
         yield return new WaitForSecondsRealtime(1.2f);
@@ -116,7 +173,7 @@ public class GameSetupManager : NetworkBehaviour
         // timescale 원상복구
         SetTimeScaleClientRpc(1.0f);
 
-        // 다음 게임을 위한 초기화
+        // 다음 게임을 위한 공 위치 초기화
         if (ballController != null)
         {
             // 화면 까매지는 거
@@ -131,6 +188,15 @@ public class GameSetupManager : NetworkBehaviour
             yield return new WaitForSecondsRealtime(0.2f);
 
             ballController.SetActiveState(true);
+        }
+
+        // 플레이어 위치 초기화
+        foreach(PlayerController pikachu in pikachus)
+        {
+            if (pikachu != null)
+            {
+                pikachu.ResetPlayerPositionClientRpc();
+            }
         }
     }
 
