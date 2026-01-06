@@ -38,7 +38,7 @@ public class GameSetupManager : NetworkBehaviour
     private BallController ballController;      // 현재 소환된 공을 기억해둠
     private Transform nextBallPos;              // 다음 게임 시작 됐을 때, 공 위치
 
-    private List<PlayerController> pikachus = new List<PlayerController>();
+    private PlayerController[] pikachus = new PlayerController[2];
 
     private void Awake()
     {
@@ -91,11 +91,14 @@ public class GameSetupManager : NetworkBehaviour
         // 현재 접속해 있는 모든 유저들의 ID 목록을 가져옴
         var clients = NetworkManager.Singleton.ConnectedClientsIds;
 
-        int index = 0;
         foreach (var client in clients)
         {
-            // 사람이 스폰 포인트보다 많으면 안됨
-            if (index >= playerSpawnPoints.Length) break;
+            // 클라이언트 ID가 ServerClinetId(보통 0, 호스트)와 같으면 0번 플레이어
+            // 아니면 1번 플레이어
+            int index = (client == NetworkManager.ServerClientId) ? 0 : 1;
+
+            // 이미 자리에 있다면 스킵
+            if (pikachus[index] != null) continue;
 
             // 위치 선정
             Transform spawnTransform = playerSpawnPoints[index];
@@ -107,6 +110,7 @@ public class GameSetupManager : NetworkBehaviour
                 Quaternion.identity
                 );
 
+            // 이미지 좌우 반전
             if(index == 1)
             {
                 playerInstance.transform.localScale = new Vector2(-1f, 1f);
@@ -119,10 +123,8 @@ public class GameSetupManager : NetworkBehaviour
             PlayerController pc = playerInstance.GetComponent<PlayerController>();
             if (pc != null)
             {
-                pikachus.Add(pc);
+                pikachus[index] = pc;
             }
-
-            index++;
         }
     }
     
@@ -160,6 +162,18 @@ public class GameSetupManager : NetworkBehaviour
 
         if (p1Score.Value >= WIN_SCORE ||  p2Score.Value >= WIN_SCORE)
         {
+            // 누가 이겼는지 확인
+            int winnerIndex = (p1Score.Value >= WIN_SCORE ? 0 : 1);
+
+            for (int i = 0; i < pikachus.Length; i++)
+            {
+                if (pikachus[i] == null) continue;
+
+                bool isWinner = (i == winnerIndex);
+
+                pikachus[i].EndGameResultClientRpc(isWinner);
+            }
+
             Debug.Log("게임 종료!");
             yield break;
         }

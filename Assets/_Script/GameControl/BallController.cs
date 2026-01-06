@@ -10,10 +10,9 @@ public class BallController : NetworkBehaviour
     private NetworkTransform networkTransform;      // 텔레포트 위해 필요
 
     [Header("공 물리 설정")]
-    // 공이 튀어오르는 힘 (위쪽)
-    public float hitUpForce = 8f;
-    // 공이 날아가는 힘 (앞쪽)
-    public float hitForwardFroce = 5f;
+    public float hitUpForce = 8f;                   // 공이 튀어오르는 힘 (위쪽)
+    public float hitForwardFroce = 5f;              // 공이 날아가는 힘 (앞쪽)
+    public float rotationMultiplier = 50f;          // 회전 속도
 
     [Header("스파이크 설정")]
     public float spikeSpeed = 18f;
@@ -27,6 +26,13 @@ public class BallController : NetworkBehaviour
         col = GetComponent<CircleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         networkTransform = GetComponent<NetworkTransform>();
+    }
+
+    private void Update()
+    {
+        float rotateSpeed = -rb.linearVelocity.x * rotationMultiplier * Time.deltaTime;
+
+        transform.Rotate(0, 0, rotateSpeed);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

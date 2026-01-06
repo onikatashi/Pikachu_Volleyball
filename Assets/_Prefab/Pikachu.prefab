@@ -102,6 +102,8 @@ GameObject:
   - component: {fileID: 6517587028582996103}
   - component: {fileID: 5287653760676143261}
   - component: {fileID: 4726884400895426098}
+  - component: {fileID: -5501797308477422158}
+  - component: {fileID: -6105008360366680372}
   m_Layer: 7
   m_Name: Pikachu
   m_TagString: Untagged
@@ -297,6 +299,16 @@ MonoBehaviour:
   jumpForce: 10
   slideForce: 8
   slideDuration: 0.5
+  spikeDuration: 0.2
+  spikeCooldown: 0.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheckDist: 0.6
+  isSpike:
+    m_InternalValue: 0
+  inputDirection:
+    m_InternalValue: {x: 0, y: 0}
 --- !u!114 &4726884400895426098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,3 +355,61 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &-5501797308477422158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6297632772962601064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 2081823275
+    DestinationState: -1078995872
+    TransitionDuration: 0.25
+    TriggerNameHash: -1809564513
+    TransitionIndex: 1
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 125937960
+    DestinationState: 779695502
+    TransitionDuration: 0.25
+    TriggerNameHash: 689066536
+    TransitionIndex: 0
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: -1078995872
+    DestinationState: -749010772
+    TransitionDuration: 0.25
+    TriggerNameHash: -749010772
+    TransitionIndex: 0
+  m_Animator: {fileID: -6105008360366680372}
+--- !u!95 &-6105008360366680372
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6297632772962601064}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a68011de59add6949b35bab309cb7a3c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

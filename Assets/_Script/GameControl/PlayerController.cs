@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : NetworkBehaviour
 {
+    private Animator anim;
+    private Rigidbody2D rb;
+
     [Header("그림자 설정")]
     public Transform shadowTransform;   // 그림자 오브젝트
     public float groundY;               // 그림자가 있어야할 Y좌표
@@ -33,19 +36,40 @@ public class PlayerController : NetworkBehaviour
         NetworkVariableReadPermission.Everyone,
         NetworkVariableWritePermission.Server);
 
-
     private Vector2 startPos;           // 시작 위치
 
-    private Rigidbody2D rb;
-    private bool isGrounded = false;    // 땅을 밟고 있는지
+    // NetworkVariable 설정 (Owner 권한 필수)
+    public NetworkVariable<bool> isGrounded = new NetworkVariable<bool>(
+        false,
+        NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Owner
+    );
+
+    //private bool isGrounded = false;    // 땅을 밟고 있는지
     private float minX, maxX;           // 이동 제한 변수
 
-    // 인풋 액션을 담아둘 변수
+    // Animator Hash ID
+    int hashIsGround;
+    int hashIsSpike;
+    int hashIsSliding;
+    int hashSlidingEnd;
+    int hashIsWin;
+    int hashIsDefeat;
 
     // 초기화
     private void Awake()
     {
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        hashIsGround = Animator.StringToHash("IsGround");
+        hashIsSpike = Animator.StringToHash("IsSpike");
+        hashIsSliding = Animator.StringToHash("IsSliding");
+        hashSlidingEnd = Animator.StringToHash("SlidingEnd");
+        hashIsWin = Animator.StringToHash("IsWin");
+        hashIsDefeat = Animator.StringToHash("IsDefeat");
+
+        anim.SetBool(hashIsGround, isGrounded.Value);
     }
 
     public override void OnNetworkSpawn()
@@ -63,6 +87,13 @@ public class PlayerController : NetworkBehaviour
         {
             InputManager.OnJump += HandleJump;
             InputManager.OnSpike += HandleSpike;
+
+            isGrounded.OnValueChanged += (oldVal, newVal) =>
+            {
+                anim.SetBool(hashIsGround, newVal);
+            };
+
+            anim.SetBool(hashIsGround, isGrounded.Value);
         }
 
         if (transform.position.x < 0)
@@ -143,10 +174,12 @@ public class PlayerController : NetworkBehaviour
     // 점프 처리
     private void HandleJump()
     {
-        if (isGrounded && !isSliding)
+        if (isGrounded.Value && !isSliding)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            isGrounded = false;
+            isGrounded.Value = false;
+
+            anim.SetBool(hashIsGround, isGrounded.Value);
         }
     }
 
@@ -157,7 +190,7 @@ public class PlayerController : NetworkBehaviour
         float currentMoveInput = InputManager.MoveInput;
         
         // 슬라이딩
-        if (isGrounded && !isSliding)
+        if (isGrounded.Value && !isSliding)
         {
             if (currentMoveInput != 0)
             {
@@ -176,6 +209,7 @@ public class PlayerController : NetworkBehaviour
     private IEnumerator Sliding(float direction)
     {
         isSliding = true;
+        anim.SetTrigger(hashIsSliding);
 
         // 입력된 방향으로 힘을 가함
         float slideDir = Mathf.Sign(direction);
@@ -186,6 +220,8 @@ public class PlayerController : NetworkBehaviour
         yield return new WaitForSeconds(slideDuration);
 
         isSliding = false;
+        anim.SetTrigger(hashSlidingEnd);
+
         // 슬라이딩 끝나면 멈춤 (관성 제거)
         rb.linearVelocity = Vector2.zero;
     }
@@ -205,6 +241,7 @@ public class PlayerController : NetworkBehaviour
 
         StartCoroutine(SpikeCoroutine(currentDir));
 
+        anim.SetTrigger(hashIsSpike);
         Debug.Log("스파이크");
         // 추후 기능 추가
     }
@@ -246,8 +283,10 @@ public class PlayerController : NetworkBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            isGrounded = true;
+            isGrounded.Value = true;
             isSliding = false;
+
+            anim.SetBool(hashIsGround, isGrounded.Value);
         }
     }
 
@@ -257,6 +296,27 @@ public class PlayerController : NetworkBehaviour
         if (IsOwner)
         {
             transform.position = startPos;
+        }
+    }
+
+    [ClientRpc]
+    public void EndGameResultClientRpc(bool isWinner)
+    {
+        // 조작 막기
+        this.enabled = false;
+
+        // 미끄럼 방지
+        rb.linearVelocity = Vector2.zero;
+        //rb.bodyType = RigidbodyType2D.Kinematic;
+
+        // 승패 애니메이션
+        if (isWinner)
+        {
+            anim.SetTrigger(hashIsWin);
+        }
+        else
+        {
+            anim.SetTrigger(hashIsDefeat);
         }
     }
 }
