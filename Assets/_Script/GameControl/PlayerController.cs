@@ -45,7 +45,6 @@ public class PlayerController : NetworkBehaviour
         NetworkVariableWritePermission.Owner
     );
 
-    //private bool isGrounded = false;    // 땅을 밟고 있는지
     private float minX, maxX;           // 이동 제한 변수
 
     // Animator Hash ID
@@ -74,11 +73,14 @@ public class PlayerController : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        isGrounded.OnValueChanged += IsGroundedChange;
+
+        anim.SetBool(hashIsGround, isGrounded.Value);
+
         // 내 캐릭터 아니면 물리 연산 끄기 (위치 동기화만 받기 위해)
         // 그렇지 않으면 내 화면에서 상대방이 중력 때문에 뚝뚝 떨어지는 현상 발생 가능
         if (!IsOwner)
         {
-            
             rb.bodyType = RigidbodyType2D.Kinematic;
         }
 
@@ -87,13 +89,6 @@ public class PlayerController : NetworkBehaviour
         {
             InputManager.OnJump += HandleJump;
             InputManager.OnSpike += HandleSpike;
-
-            isGrounded.OnValueChanged += (oldVal, newVal) =>
-            {
-                anim.SetBool(hashIsGround, newVal);
-            };
-
-            anim.SetBool(hashIsGround, isGrounded.Value);
         }
 
         if (transform.position.x < 0)
@@ -113,6 +108,9 @@ public class PlayerController : NetworkBehaviour
 
     public override void OnNetworkDespawn()
     {
+        // 이벤트 연결 해제
+        isGrounded.OnValueChanged -= IsGroundedChange;
+
         if (IsOwner)
         {
             InputManager.OnJump -= HandleJump;
@@ -176,6 +174,8 @@ public class PlayerController : NetworkBehaviour
     {
         if (isGrounded.Value && !isSliding)
         {
+            PlayActionSoundServerRpc("Jump");
+
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             isGrounded.Value = false;
 
@@ -194,6 +194,7 @@ public class PlayerController : NetworkBehaviour
         {
             if (currentMoveInput != 0)
             {
+                PlayActionSoundServerRpc("Jump");
                 StartCoroutine(Sliding(currentMoveInput));
             }
         }
@@ -232,6 +233,8 @@ public class PlayerController : NetworkBehaviour
         // 쿨타임 체크 (로컬에서 거름)
         if (Time.time < lastSpikeTime + spikeCooldown) return;
 
+        PlayActionSoundServerRpc("Spike");
+
         float x = InputManager.MoveInput;
         float y = 0f;
         if (Keyboard.current.upArrowKey.isPressed) y = 1f;
@@ -242,7 +245,6 @@ public class PlayerController : NetworkBehaviour
         StartCoroutine(SpikeCoroutine(currentDir));
 
         anim.SetTrigger(hashIsSpike);
-        Debug.Log("스파이크");
         // 추후 기능 추가
     }
 
@@ -258,6 +260,25 @@ public class PlayerController : NetworkBehaviour
 
         // 스파이크 끝을 서버에 알림
         SetSpikeStateServerRpc(false, Vector2.zero);
+    }
+
+    // 바닥에 닿았을 때 체크
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!IsOwner) return;
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            isGrounded.Value = true;
+            isSliding = false;
+
+            anim.SetBool(hashIsGround, isGrounded.Value);
+        }
+    }
+
+    private void IsGroundedChange(bool oldVal, bool newVal)
+    {
+        anim.SetBool(hashIsGround, newVal);
     }
 
     [ServerRpc]
@@ -278,16 +299,17 @@ public class PlayerController : NetworkBehaviour
         inputDirection.Value = dir;
     }
 
-    // 바닥에 닿았을 때 체크
-    private void OnCollisionEnter2D(Collision2D collision)
+    [ServerRpc]
+    private void PlayActionSoundServerRpc(string soundName)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            isGrounded.Value = true;
-            isSliding = false;
+        PlayActionSoundClientRpc(soundName);
+    }
 
-            anim.SetBool(hashIsGround, isGrounded.Value);
-        }
+    [ClientRpc]
+    private void PlayActionSoundClientRpc(string soundName)
+    {
+        // 소리 재생은 각자 컴퓨터에서 실행됨
+        SoundManager.Instance.PlaySFX(soundName);
     }
 
     [ClientRpc]

@@ -68,6 +68,16 @@ public class GameSetupManager : NetworkBehaviour
         }
     }
 
+    private void Start()
+    {
+        SoundManager.Instance.PlayBGM("GameBgm");
+    }
+
+    private void OnDisable()
+    {
+        SoundManager.Instance.StopBGM();
+    }
+
     private void UpdateScoreUI()
     {
         int score1 = p1Score.Value;
@@ -162,6 +172,8 @@ public class GameSetupManager : NetworkBehaviour
 
         if (p1Score.Value >= WIN_SCORE ||  p2Score.Value >= WIN_SCORE)
         {
+            SoundManager.Instance.PlaySFX("GameEnd");
+
             // 누가 이겼는지 확인
             int winnerIndex = (p1Score.Value >= WIN_SCORE ? 0 : 1);
 

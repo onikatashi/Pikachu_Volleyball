@@ -54,6 +54,7 @@ public class LobbyUIController : MonoBehaviour
 
         if (myPlayer != null)
         {
+            SoundManager.Instance.PlaySFX("Menu");
             myPlayer.ToggleReady();
         }
     }
@@ -61,6 +62,7 @@ public class LobbyUIController : MonoBehaviour
     // 게임 시작 버튼 클릭
     void OnStartGameClicked()
     {
+        SoundManager.Instance.PlaySFX("Select");
         if (NetworkManager.Singleton.IsServer)
         {
             NetworkManager.Singleton.SceneManager.LoadScene

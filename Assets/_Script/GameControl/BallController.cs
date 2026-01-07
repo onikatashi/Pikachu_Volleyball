@@ -49,6 +49,7 @@ public class BallController : NetworkBehaviour
         // 바닥에 부딪혔을 때 (점수 처리)
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
+            PlayActionSoundServerRpc("BallGround");
             GameSetupManager.Instance.OnBallHitGround(collision.gameObject.name);
         }
     }
@@ -63,6 +64,8 @@ public class BallController : NetworkBehaviour
         // 스파이크 상태일 때
         if (player.isSpike.Value)
         {
+            PlayActionSoundServerRpc("BallSpike");
+
             Vector2 input = player.inputDirection.Value;
             Vector2 spikeDir;
 
@@ -113,9 +116,7 @@ public class BallController : NetworkBehaviour
 
             // 최종 정규화 및 속도 적용
             rb.linearVelocity = Vector2.zero;   // 기존 속도 제거
-            rb.linearVelocity = spikeDir.normalized * spikeSpeed;
-
-            
+            rb.linearVelocity = spikeDir.normalized * spikeSpeed;     
         }
         // 일반 타격 (리시브)
         else
@@ -150,6 +151,19 @@ public class BallController : NetworkBehaviour
     public void SetActiveState(bool isActive)
     {
         SetActiveClientRpc(isActive);
+    }
+
+    [ServerRpc]
+    private void PlayActionSoundServerRpc(string soundName)
+    {
+        PlayActionSoundClientRpc(soundName);
+    }
+
+    [ClientRpc]
+    private void PlayActionSoundClientRpc(string soundName)
+    {
+        // 소리 재생은 각자 컴퓨터에서 실행됨
+        SoundManager.Instance.PlaySFX(soundName);
     }
 
     [ClientRpc]

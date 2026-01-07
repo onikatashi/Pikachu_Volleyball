@@ -222,7 +222,7 @@ Rigidbody2D:
   m_Mass: 100
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -296,19 +296,17 @@ MonoBehaviour:
   shadowTransform: {fileID: 8835162859325987402}
   groundY: 0
   moveSpeed: 5
-  jumpForce: 10
+  jumpForce: 12
   slideForce: 8
   slideDuration: 0.5
   spikeDuration: 0.2
   spikeCooldown: 0.5
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  groundCheckDist: 0.6
   isSpike:
     m_InternalValue: 0
   inputDirection:
     m_InternalValue: {x: 0, y: 0}
+  isGrounded:
+    m_InternalValue: 0
 --- !u!114 &4726884400895426098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,14 +371,14 @@ MonoBehaviour:
     Layer: 0
     OriginatingState: 2081823275
     DestinationState: -1078995872
-    TransitionDuration: 0.25
+    TransitionDuration: 0
     TriggerNameHash: -1809564513
     TransitionIndex: 1
   - IsCrossFadeExit: 0
     Layer: 0
     OriginatingState: 125937960
     DestinationState: 779695502
-    TransitionDuration: 0.25
+    TransitionDuration: 0
     TriggerNameHash: 689066536
     TransitionIndex: 0
   - IsCrossFadeExit: 0
