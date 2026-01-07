@@ -16,7 +16,13 @@ public class BallController : NetworkBehaviour
 
     [Header("스파이크 설정")]
     public float spikeSpeed = 18f;
+
     // 잔상 설정
+    [Header("잔상 효과")]
+    public float ghostInterval = 0.05f;             // 잔상 생성 간격
+    public float ghostDuration = 0.4f;              // 잔상이 생성되는 총 시간
+    public float ghostFadeSpeed = 3f;               // 잔상이 사라지는 속도
+
 
     private bool isSpikeActive = false;             // 현재 스파이크 상태인지
 
@@ -173,4 +179,18 @@ public class BallController : NetworkBehaviour
         if (sr != null) sr.enabled = isActive;
         if (col != null) col.enabled = isActive;
     }
+
+    [ClientRpc]
+    private void ActivateSpikeEffectClientRpc(float duration)
+    {
+
+    }
+
+    [ClientRpc]
+    private void StopSpikeEffectClientRpc()
+    {
+
+    }
+
+
 }

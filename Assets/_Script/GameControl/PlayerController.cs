@@ -19,7 +19,7 @@ public class PlayerController : NetworkBehaviour
 
     [Header("슬라이딩 설정")]
     public float slideForce = 8f;       // 슬라이딩 속도
-    public float slideDuration = 0.5f;  // 슬라이딩 지속 시간
+    public float slideDuration = 0.4f;  // 슬라이딩 지속 시간
     private bool isSliding = false;     // 슬라이딩 했는지
 
     [Header("스파이크 설정")]
@@ -210,21 +210,34 @@ public class PlayerController : NetworkBehaviour
     private IEnumerator Sliding(float direction)
     {
         isSliding = true;
+
         anim.SetTrigger(hashIsSliding);
 
         // 입력된 방향으로 힘을 가함
         float slideDir = Mathf.Sign(direction);
+
+        // 원래 보고 있던 방향 저장
+        float originalFacing = Mathf.Sign(transform.localScale.x);
+
+        // 슬라이딩 방향으로 전환
+        SetFacingServerRpc(slideDir);
 
         // Y축은 0f로 만들어서 바닥에 붙게 함
         rb.linearVelocity = new Vector2(slideDir * slideForce, 0f);
 
         yield return new WaitForSeconds(slideDuration);
 
-        isSliding = false;
         anim.SetTrigger(hashSlidingEnd);
+
+        yield return new WaitForSeconds(0.35f);
+
+        // 원래 방향으로 복귀
+        SetFacingServerRpc(originalFacing);
 
         // 슬라이딩 끝나면 멈춤 (관성 제거)
         rb.linearVelocity = Vector2.zero;
+
+        isSliding = false;
     }
 
     // 스파이크
@@ -281,6 +294,17 @@ public class PlayerController : NetworkBehaviour
         anim.SetBool(hashIsGround, newVal);
     }
 
+    private void SetFacingDirection(float dirX)
+    {
+        if (dirX == 0) return;
+
+        Vector3 currentScale = transform.localScale;
+
+        currentScale.x = Mathf.Abs(currentScale.x) * (dirX > 0 ? 1 : -1);
+
+        transform.localScale = currentScale;
+    }
+
     [ServerRpc]
     private void SetSpikeStateServerRpc(bool state, Vector2 dir)
     {
@@ -297,6 +321,18 @@ public class PlayerController : NetworkBehaviour
     private void UpdateInputDirServerRpc(Vector2 dir)
     {
         inputDirection.Value = dir;
+    }
+
+    [ServerRpc]
+    private void SetFacingServerRpc(float dirX)
+    {
+        SetFacingClientRpc(dirX);
+    }
+
+    [ClientRpc]
+    private void SetFacingClientRpc(float dirX)
+    {
+        SetFacingDirection(dirX);
     }
 
     [ServerRpc]
