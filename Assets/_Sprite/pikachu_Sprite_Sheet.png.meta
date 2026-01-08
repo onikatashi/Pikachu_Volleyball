@@ -3459,6 +3459,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: _title
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 215
+        width: 188
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e78650341045a1c4f88353164c29c551
+      internalID: -1707212704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _subtitle
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 730
+        width: 84
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0ed6358e7d9e034b8f699522987d9dd
+      internalID: 2121538863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -3473,6 +3517,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      _subtitle: 2121538863
+      _title: -1707212704
       pikachu_Sprite_Sheet_0: -5786623580013926988
       pikachu_Sprite_Sheet_1: -8638599627363772824
       pikachu_Sprite_Sheet_10: -3643403691472564163

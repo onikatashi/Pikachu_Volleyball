@@ -1,13 +1,16 @@
 using System.Collections;
 using Unity.Netcode;
+using Unity.Netcode.Components;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
+using static UnityEditor.PlayerSettings;
 
 public class PlayerController : NetworkBehaviour
 {
     private Animator anim;
     private Rigidbody2D rb;
+    private ClientNetworkTransform networkTransform;
 
     [Header("그림자 설정")]
     public Transform shadowTransform;   // 그림자 오브젝트
@@ -40,7 +43,7 @@ public class PlayerController : NetworkBehaviour
 
     // NetworkVariable 설정 (Owner 권한 필수)
     public NetworkVariable<bool> isGrounded = new NetworkVariable<bool>(
-        false,
+        true,
         NetworkVariableReadPermission.Everyone,
         NetworkVariableWritePermission.Owner
     );
@@ -60,6 +63,7 @@ public class PlayerController : NetworkBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        networkTransform = GetComponent<ClientNetworkTransform>();
 
         hashIsGround = Animator.StringToHash("IsGround");
         hashIsSpike = Animator.StringToHash("IsSpike");
@@ -211,7 +215,8 @@ public class PlayerController : NetworkBehaviour
     {
         isSliding = true;
 
-        anim.SetTrigger(hashIsSliding);
+        //anim.SetTrigger(hashIsSliding);
+        TriggerAnimationPlayServerRpc(hashIsSliding);
 
         // 입력된 방향으로 힘을 가함
         float slideDir = Mathf.Sign(direction);
@@ -227,7 +232,8 @@ public class PlayerController : NetworkBehaviour
 
         yield return new WaitForSeconds(slideDuration);
 
-        anim.SetTrigger(hashSlidingEnd);
+        //anim.SetTrigger(hashSlidingEnd);
+        TriggerAnimationPlayServerRpc(hashSlidingEnd);
 
         yield return new WaitForSeconds(0.35f);
 
@@ -257,7 +263,8 @@ public class PlayerController : NetworkBehaviour
 
         StartCoroutine(SpikeCoroutine(currentDir));
 
-        anim.SetTrigger(hashIsSpike);
+        //anim.SetTrigger(hashIsSpike);
+        TriggerAnimationPlayServerRpc(hashIsSpike);
         // 추후 기능 추가
     }
 
@@ -353,7 +360,8 @@ public class PlayerController : NetworkBehaviour
     {
         if (IsOwner)
         {
-            transform.position = startPos;
+            //transform.position = startPos;
+            networkTransform.Teleport(startPos, Quaternion.identity, transform.localScale);
         }
     }
 
@@ -376,5 +384,17 @@ public class PlayerController : NetworkBehaviour
         {
             anim.SetTrigger(hashIsDefeat);
         }
+    }
+
+    [ServerRpc]
+    private void TriggerAnimationPlayServerRpc(int hashcode)
+    {
+        TriggerAnimationPlayClientRpc(hashcode);
+    }
+
+    [ClientRpc]
+    private void TriggerAnimationPlayClientRpc(int hashcode)
+    {
+        anim.SetTrigger(hashcode);
     }
 }
