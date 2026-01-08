@@ -65,6 +65,7 @@ public class LobbyUIController : MonoBehaviour
         SoundManager.Instance.PlaySFX("Select");
         if (NetworkManager.Singleton.IsServer)
         {
+            FadeEffectClientRpc();
             NetworkManager.Singleton.SceneManager.LoadScene
                 ("03_GameScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
         }
@@ -115,5 +116,12 @@ public class LobbyUIController : MonoBehaviour
             startButton.interactable = (playerCount == 2 && isAllReady);
         }
 
+    }
+
+    [ClientRpc]
+    private void FadeEffectClientRpc()
+    {
+        // 각 클라이언트가 자신의 SceneTransitionManager를 통해 효과 재생
+        StartCoroutine(SceneLoaderManager.Instance.FadeInBlackBackground());
     }
 }

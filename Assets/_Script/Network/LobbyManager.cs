@@ -58,6 +58,9 @@ public class LobbyManager : MonoBehaviour
                 allocation.ConnectionData
                 );
 
+            // 씬 로드 전에 화면 까맣게 만들기
+            StartCoroutine(SceneLoaderManager.Instance.FadeInBlackBackground());
+
             // 호스트 시작
             NetworkManager.Singleton.StartHost();
 
@@ -104,6 +107,9 @@ public class LobbyManager : MonoBehaviour
                 joinAllocation.ConnectionData,
                 joinAllocation.HostConnectionData
                 );
+
+            // 씬 로드 전에 화면 까맣게 만들기
+            StartCoroutine(SceneLoaderManager.Instance.FadeInBlackBackground());
 
             // Client로 게임 시작
             NetworkManager.Singleton.StartClient();

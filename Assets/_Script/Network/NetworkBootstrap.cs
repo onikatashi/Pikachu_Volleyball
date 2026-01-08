@@ -21,7 +21,7 @@ public class NetworkBootstrap : MonoBehaviour
 
         Debug.Log($"플레이어 ID: { AuthenticationService.Instance.PlayerId}");
 
-        // 메인 메뉴 씬으로 이동
-        SceneManager.LoadScene("01_MainMenuScene");
+        // 여기서 씬 로딩 호출
+        SceneLoaderManager.Instance.LoadMainMenuWithLogo();
     }
 }

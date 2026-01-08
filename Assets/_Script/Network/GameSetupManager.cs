@@ -203,9 +203,7 @@ public class GameSetupManager : NetworkBehaviour
         if (ballController != null)
         {
             // 화면 까매지는 거
-
-            // 공 잠시 안보이게 시킴
-            ballController.SetActiveState(false);
+            GameSetupFadeInClientRpc();
 
             // 공 위치 리셋
             ballController.ResetBall(nextBallPos.position);
@@ -224,6 +222,8 @@ public class GameSetupManager : NetworkBehaviour
                 pikachu.ResetPlayerPositionClientRpc();
             }
         }
+
+        GameSetupFadeOutClientRpc();
     }
 
     [ClientRpc]
@@ -233,5 +233,19 @@ public class GameSetupManager : NetworkBehaviour
 
         // FixedDeltaTime도 같이 조절해야 부드러움
         Time.fixedDeltaTime = 0.02f * scale;
+    }
+
+    [ClientRpc]
+    private void GameSetupFadeInClientRpc()
+    {
+        // 각 클라이언트가 자신의 SceneTransitionManager를 통해 효과 재생
+        StartCoroutine(SceneLoaderManager.Instance.FadeInBlackBackground());
+    }
+
+    [ClientRpc]
+    private void GameSetupFadeOutClientRpc()
+    {
+        // 각 클라이언트가 자신의 SceneTransitionManager를 통해 효과 재생
+        StartCoroutine(SceneLoaderManager.Instance.FadeOutBlackBackground());
     }
 }

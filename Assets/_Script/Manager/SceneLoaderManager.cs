@@ -1,3 +1,4 @@
+using NUnit.Framework.Constraints;
 using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
@@ -5,11 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoaderManager : MonoBehaviour
 {
-    public SceneLoaderManager Instance;
+    public static SceneLoaderManager Instance;
 
     [Header("UI 연결")]
-    public CanvasGroup fadeCanvasGroup;    // 검은 화면 패널의 CanvasGroup
-    public float fadeDuration = 0.5f;       // 페이드 되는 시간
+    public CanvasGroup fadePanel;       // 검은 화면 패널
+    public CanvasGroup logoImage;       // 로고 이미지
+
+    [Header("설정")]
+    public float fadeDuration = 0.5f;   // 페이드 시간
+    public float logoDuration = 2.0f;   // 로고 떠 있는 시간
 
     private void Awake()
     {
@@ -22,50 +27,94 @@ public class SceneLoaderManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    
-    // 로컬에서 단순히 씬만 이동할 때
-    public void LoadSceneLocal(string sceneName)
-    {
-        StartCoroutine(LoadSceneLoaclCoroutine(sceneName));
+
+        // 씬 로드될 때마다 호출되는 이벤트 연결
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    IEnumerator LoadSceneLoaclCoroutine(string sceneName)
+    private void OnDestroy()
     {
-        // 화면 어두워짐
-        yield return StartCoroutine(Fade(1f));
-
-        // 씬 로딩
-        SceneManager.LoadScene(sceneName);
-
-        // 로딩이 끝날 때까지 대기
-        yield return null;
-
-        // 화면 밝아짐
-        yield return StartCoroutine(Fade(0f));
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // 페이드 효과 (Alpha 0 ~ 1)
-    private IEnumerator Fade(float targetAlpha)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        float startAlpha = fadeCanvasGroup.alpha;
-        float time = 0f;
+        // 로고 이미지는 꺼야함
+        logoImage.alpha = 0f;
+        logoImage.gameObject.SetActive(false);
 
-        while (time < fadeDuration)
+        // 검은 화면이 덮여있으면 걷어내기
+        StartCoroutine(FadeOutBlackBackground());
+    }
+
+    // 로고 페이드 인 아웃
+    public void LoadMainMenuWithLogo()
+    {
+        fadePanel.alpha = 1f;
+        StartCoroutine(LogoFadeCoroutine());
+    }
+
+    private IEnumerator LogoFadeCoroutine()
+    {
+        logoImage.gameObject.SetActive(true);
+        logoImage.alpha = 0f;
+
+        // 로고 페이드 인
+        yield return StartCoroutine(Fade(logoImage, 0f, 1f));
+
+        // 로고 유지
+        yield return new WaitForSeconds(logoDuration);
+
+        // 로고 페이드 아웃
+        yield return StartCoroutine(Fade(logoImage, 1f, 0f));
+
+        logoImage.gameObject.SetActive(false);
+
+        SceneManager.LoadScene("01_MainMenuScene");
+    }
+
+    // 게임 1점이 났을 때, 잠시 화면 어두워지고 밝아지는 연출
+    public IEnumerator FadeInOutGameSetup()
+    {
+        // 화면 까매지기
+        yield return StartCoroutine(Fade(fadePanel, 0f, 1f));
+
+        // 잠시 대기
+        yield return new WaitForSeconds(0.3f);
+
+        // 다시 밝아짐
+        yield return StartCoroutine(Fade(fadePanel, 1f, 0f));
+    }
+
+    // 씬 로드 직전에 호출
+    public IEnumerator FadeInBlackBackground()
+    {
+        yield return StartCoroutine(Fade(fadePanel, 0f, 1f));
+    }
+
+    public IEnumerator FadeOutBlackBackground()
+    {
+        yield return StartCoroutine(Fade(fadePanel, 1f, 0f));
+    }
+
+    private IEnumerator Fade(CanvasGroup cg, float start, float end)
+    {
+        cg.gameObject.SetActive(true);
+
+        float timer = 0f;
+        cg.alpha = start;
+
+        while (timer < fadeDuration)
         {
-            time += Time.deltaTime;
-            fadeCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, time / fadeDuration);
+            timer += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(start, end, timer / fadeDuration);
             yield return null;
         }
-        fadeCanvasGroup.alpha = targetAlpha;
-    }
-
-    // 서버에서 씬 전환을 할 때
-    public void LoadNetworkScene(string sceneName)
-    {
-        if (NetworkManager.Singleton.IsServer)
+        cg.alpha = end;
+        
+        if(end == 0f)
         {
-            
+            cg.gameObject.SetActive(false);
         }
     }
 }
