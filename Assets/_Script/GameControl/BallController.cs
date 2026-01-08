@@ -19,9 +19,8 @@ public class BallController : NetworkBehaviour
 
     // 잔상 설정
     [Header("잔상 효과")]
-    public float ghostInterval = 0.05f;             // 잔상 생성 간격
-    public float ghostDuration = 0.4f;              // 잔상이 생성되는 총 시간
-    public float ghostFadeSpeed = 3f;               // 잔상이 사라지는 속도
+    public ParticleSystem trailParticle;            // 잔상효과 파티클
+    private bool isEffectActive = false;            // 잔상효과가 켜져있는지 체크
 
 
     private bool isSpikeActive = false;             // 현재 스파이크 상태인지
@@ -34,11 +33,28 @@ public class BallController : NetworkBehaviour
         networkTransform = GetComponent<NetworkTransform>();
     }
 
+    private void Start()
+    {
+        trailParticle.gameObject.SetActive(false);
+    }
+
     private void Update()
     {
         float rotateSpeed = -rb.linearVelocity.x * rotationMultiplier * Time.deltaTime;
 
         transform.Rotate(0, 0, rotateSpeed);
+
+        if (isEffectActive && trailParticle != null)
+        {
+            // 파티클의 main 모듈을 가져옴
+            var main = trailParticle.main;
+
+            // Transform 의 회전(Degree)을 라디안(Radian)으로 변환해서 적용
+            float currentZRotation = transform.rotation.eulerAngles.z;
+
+            // 파티클의 start rotation 설정
+            main.startRotation = -currentZRotation * Mathf.Deg2Rad;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -55,7 +71,12 @@ public class BallController : NetworkBehaviour
         // 바닥에 부딪혔을 때 (점수 처리)
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
+            Vector2 hitPoint = collision.contacts[0].point;
+
+            BallHitEffectClientRpc(hitPoint);
+
             PlayActionSoundServerRpc("BallGround");
+
             GameSetupManager.Instance.OnBallHitGround(collision.gameObject.name);
         }
     }
@@ -70,6 +91,15 @@ public class BallController : NetworkBehaviour
         // 스파이크 상태일 때
         if (player.isSpike.Value)
         {
+            // 스파이크 충돌 지점 가져오기
+            Vector2 hitPoint = collision.contacts[0].point;
+
+            BallHitEffectClientRpc(hitPoint);
+
+            // 스파이크 잔상 효과
+            SetSprikeEffectClientRpc(true);
+
+            // 스파이크 SFX 재생
             PlayActionSoundServerRpc("BallSpike");
 
             Vector2 input = player.inputDirection.Value;
@@ -127,6 +157,8 @@ public class BallController : NetworkBehaviour
         // 일반 타격 (리시브)
         else
         {
+            SetSprikeEffectClientRpc(false);
+
             rb.linearVelocity = Vector2.zero;
             rb.linearVelocity = new Vector2(facingDir * hitForwardFroce, hitUpForce);
         }
@@ -173,24 +205,39 @@ public class BallController : NetworkBehaviour
     }
 
     [ClientRpc]
+    private void SetSprikeEffectClientRpc(bool isActive)
+    {
+        isEffectActive = isActive;
+
+        if (trailParticle != null)
+        {
+            trailParticle.gameObject.SetActive(isActive);
+
+            if (isActive)
+            {
+                trailParticle.Play();
+            }
+            else
+            {
+                trailParticle.Stop();
+            }
+        }
+    }
+
+    [ClientRpc]
+
+    private void BallHitEffectClientRpc(Vector2 pos)
+    {
+        BallHitEffect.Instance.ShowEffect(pos);
+    }
+
+    [ClientRpc]
     private void SetActiveClientRpc(bool isActive)
     {
         rb.simulated = isActive;        // 물리를 끄면 충돌도 안 일어남
+        trailParticle.gameObject.SetActive(false);
+        trailParticle.Stop();
         if (sr != null) sr.enabled = isActive;
         if (col != null) col.enabled = isActive;
     }
-
-    [ClientRpc]
-    private void ActivateSpikeEffectClientRpc(float duration)
-    {
-
-    }
-
-    [ClientRpc]
-    private void StopSpikeEffectClientRpc()
-    {
-
-    }
-
-
 }
