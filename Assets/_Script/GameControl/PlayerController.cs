@@ -127,6 +127,10 @@ public class PlayerController : NetworkBehaviour
         // 내 캐릭터 아니면 조종 X
         if (!IsOwner) return;
 
+        if (GameSetupManager.Instance == null) return;
+
+        if (!GameSetupManager.Instance.isGameActive.Value) return;
+
         // 슬라이딩 중이 아닐 때만 일반 이동 가능
         if (!isSliding)
         {
@@ -215,7 +219,6 @@ public class PlayerController : NetworkBehaviour
     {
         isSliding = true;
 
-        //anim.SetTrigger(hashIsSliding);
         TriggerAnimationPlayServerRpc(hashIsSliding);
 
         // 입력된 방향으로 힘을 가함
@@ -232,7 +235,6 @@ public class PlayerController : NetworkBehaviour
 
         yield return new WaitForSeconds(slideDuration);
 
-        //anim.SetTrigger(hashSlidingEnd);
         TriggerAnimationPlayServerRpc(hashSlidingEnd);
 
         yield return new WaitForSeconds(0.35f);
@@ -263,9 +265,7 @@ public class PlayerController : NetworkBehaviour
 
         StartCoroutine(SpikeCoroutine(currentDir));
 
-        //anim.SetTrigger(hashIsSpike);
         TriggerAnimationPlayServerRpc(hashIsSpike);
-        // 추후 기능 추가
     }
 
     private IEnumerator SpikeCoroutine(Vector2 dir)

@@ -40,6 +40,24 @@ public class BallController : NetworkBehaviour
 
     private void Update()
     {
+        if (GameSetupManager.Instance == null) return;
+
+        if (!GameSetupManager.Instance.isGameActive.Value)
+        {
+            if (IsServer)
+            {
+                rb.bodyType = RigidbodyType2D.Kinematic; 
+                rb.linearVelocity = Vector2.zero;
+            }
+        }
+        else
+        {
+            if (IsServer)
+            {
+                rb.bodyType = RigidbodyType2D.Dynamic;
+            }
+        }
+
         float rotateSpeed = -rb.linearVelocity.x * rotationMultiplier * Time.deltaTime;
 
         transform.Rotate(0, 0, rotateSpeed);
@@ -91,6 +109,8 @@ public class BallController : NetworkBehaviour
         // 스파이크 상태일 때
         if (player.isSpike.Value)
         {
+            facingDir = Mathf.Sign(player.transform.localScale.x);
+
             // 스파이크 충돌 지점 가져오기
             Vector2 hitPoint = collision.contacts[0].point;
 

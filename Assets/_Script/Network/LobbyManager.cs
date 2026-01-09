@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using TMPro.Examples;
 using Unity.Netcode;
@@ -61,6 +62,11 @@ public class LobbyManager : MonoBehaviour
             // 씬 로드 전에 화면 까맣게 만들기
             StartCoroutine(SceneLoaderManager.Instance.FadeInBlackBackground());
 
+            // 페이드 시간만큼 대기
+            // SceneLoaderManager의 fadeDuration(초)을 밀리초(1000 곱하기)로 변환
+            int waitTime = (int)(SceneLoaderManager.Instance.fadeDuration * 1000);
+            await Task.Delay(waitTime);
+
             // 호스트 시작
             NetworkManager.Singleton.StartHost();
 
@@ -110,6 +116,10 @@ public class LobbyManager : MonoBehaviour
 
             // 씬 로드 전에 화면 까맣게 만들기
             StartCoroutine(SceneLoaderManager.Instance.FadeInBlackBackground());
+
+            // 페이드 시간만큼 대기
+            int waitTime = (int)(SceneLoaderManager.Instance.fadeDuration * 1000);
+            await Task.Delay(waitTime);
 
             // Client로 게임 시작
             NetworkManager.Singleton.StartClient();

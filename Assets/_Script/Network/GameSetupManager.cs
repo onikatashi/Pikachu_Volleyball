@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -29,6 +30,10 @@ public class GameSetupManager : NetworkBehaviour
     // 2P 점수판
     public Image rightTensImage;
     public Image rightOnesImage;
+
+    [Header("게임 시작 관리")]
+    public CanvasGroup readyImage;              // Ready? 이미지
+    public NetworkVariable<bool> isGameActive = new NetworkVariable<bool>(false);
 
     // 점수 변수 (NetworkVariable)
     private NetworkVariable<int> p1Score = new NetworkVariable<int>(0);
@@ -66,6 +71,8 @@ public class GameSetupManager : NetworkBehaviour
             SpawnPlayers();
             SpawnBall();
         }
+
+        StartCoroutine(StartNewRoundCoroutine());
     }
 
     private void Start()
@@ -76,6 +83,41 @@ public class GameSetupManager : NetworkBehaviour
     private void OnDisable()
     {
         SoundManager.Instance.StopBGM();
+    }
+
+    // 라운드 시작
+    private IEnumerator StartNewRoundCoroutine()
+    {
+        if(!IsServer) yield break;
+
+        // Ready 애니메이션 재생
+        PlayReadyAnimationClientRpc();
+
+        // 애니메이션 시간만큼 대기
+        yield return new WaitForSeconds(1.8f);
+
+        isGameActive.Value = true;
+    }
+
+    // Ready 애니메이션
+    private IEnumerator BlinkReadySpriteCoroutine()
+    {
+        if (readyImage == null) yield break;
+
+        readyImage.gameObject.SetActive(true);
+
+        for (int i = 0; i < 3; i++)
+        {
+            // 켜짐
+            readyImage.alpha = 1f;
+            yield return new WaitForSeconds(0.3f);
+
+            // 꺼짐
+            readyImage.alpha = 0f;
+            yield return new WaitForSeconds(0.3f);
+        }
+
+        readyImage.gameObject.SetActive(false);
     }
 
     private void UpdateScoreUI()
@@ -223,7 +265,14 @@ public class GameSetupManager : NetworkBehaviour
             }
         }
 
+        // 게임 동작 정지 (플레이어 / 공 멈춤)
+        isGameActive.Value = false;
+        
         GameSetupFadeOutClientRpc();
+
+        yield return new WaitForSeconds(SceneLoaderManager.Instance.fadeDuration);
+
+        StartCoroutine(StartNewRoundCoroutine());
     }
 
     [ClientRpc]
@@ -247,5 +296,11 @@ public class GameSetupManager : NetworkBehaviour
     {
         // 각 클라이언트가 자신의 SceneTransitionManager를 통해 효과 재생
         StartCoroutine(SceneLoaderManager.Instance.FadeOutBlackBackground());
+    }
+
+    [ClientRpc]
+    private void PlayReadyAnimationClientRpc()
+    {
+        StartCoroutine(BlinkReadySpriteCoroutine());
     }
 }

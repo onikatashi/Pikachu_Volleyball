@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
@@ -60,12 +61,16 @@ public class LobbyUIController : MonoBehaviour
     }
 
     // 게임 시작 버튼 클릭
-    void OnStartGameClicked()
+    async void OnStartGameClicked()
     {
         SoundManager.Instance.PlaySFX("Select");
         if (NetworkManager.Singleton.IsServer)
         {
             FadeEffectClientRpc();
+
+            int waitTime = (int)(SceneLoaderManager.Instance.fadeDuration * 1000);
+            await Task.Delay(waitTime);
+
             NetworkManager.Singleton.SceneManager.LoadScene
                 ("03_GameScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
         }

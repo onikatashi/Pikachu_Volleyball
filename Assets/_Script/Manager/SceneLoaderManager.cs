@@ -13,7 +13,7 @@ public class SceneLoaderManager : MonoBehaviour
     public CanvasGroup logoImage;       // 로고 이미지
 
     [Header("설정")]
-    public float fadeDuration = 0.5f;   // 페이드 시간
+    public float fadeDuration = 0.8f;   // 페이드 시간
     public float logoDuration = 2.0f;   // 로고 떠 있는 시간
 
     private void Awake()
@@ -43,19 +43,37 @@ public class SceneLoaderManager : MonoBehaviour
         logoImage.alpha = 0f;
         logoImage.gameObject.SetActive(false);
 
-        // 검은 화면이 덮여있으면 걷어내기
-        StartCoroutine(FadeOutBlackBackground());
+        if (SceneManager.GetActiveScene().name != "00_BootScene")
+        {
+            // 검은 화면이 덮여있으면 걷어내기
+            StartCoroutine(FadeOutBlackBackground());
+        }
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        StartCoroutine(LoadSceneSequence(sceneName));
+    }
+
+    private IEnumerator LoadSceneSequence(string sceneName)
+    {
+        yield return StartCoroutine(Fade(fadePanel, 0f, 1f));
+
+        SceneManager.LoadScene(sceneName);
     }
 
     // 로고 페이드 인 아웃
     public void LoadMainMenuWithLogo()
     {
-        fadePanel.alpha = 1f;
+        StopAllCoroutines();
+
         StartCoroutine(LogoFadeCoroutine());
     }
 
     private IEnumerator LogoFadeCoroutine()
     {
+        //fadePanel.gameObject.SetActive(true);
+        //fadePanel.alpha = 1f;
         logoImage.gameObject.SetActive(true);
         logoImage.alpha = 0f;
 
