@@ -180,6 +180,10 @@ public class PlayerController : NetworkBehaviour
     // 점프 처리
     private void HandleJump()
     {
+        if (GameSetupManager.Instance == null) return;
+
+        if (!GameSetupManager.Instance.isGameActive.Value) return;
+
         if (isGrounded.Value && !isSliding)
         {
             PlayActionSoundServerRpc("Jump");
@@ -360,7 +364,7 @@ public class PlayerController : NetworkBehaviour
     {
         if (IsOwner)
         {
-            //transform.position = startPos;
+            rb.linearVelocity = Vector2.zero;
             networkTransform.Teleport(startPos, Quaternion.identity, transform.localScale);
         }
     }

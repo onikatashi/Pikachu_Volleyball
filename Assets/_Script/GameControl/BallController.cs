@@ -109,7 +109,7 @@ public class BallController : NetworkBehaviour
         // 스파이크 상태일 때
         if (player.isSpike.Value)
         {
-            facingDir = Mathf.Sign(player.transform.localScale.x);
+            facingDir = player.transform.localScale.x;
 
             // 스파이크 충돌 지점 가져오기
             Vector2 hitPoint = collision.contacts[0].point;
@@ -136,7 +136,7 @@ public class BallController : NetworkBehaviour
                 // 위 방향키만
                 else
                 {
-                    spikeDir = new Vector2(facingDir * 0.2f, 1f);
+                    spikeDir = new Vector2(facingDir * 0.3f, 1f);
                 }
             }
 
@@ -151,7 +151,7 @@ public class BallController : NetworkBehaviour
                 // 아래 방향키만
                 else
                 {
-                    spikeDir = new Vector2(facingDir * 0.2f, -1f);
+                    spikeDir = new Vector2(facingDir * 0.3f, -1f);
                 }
             }
 
@@ -161,12 +161,12 @@ public class BallController : NetworkBehaviour
                 // 앞 방향키 눌렸을 때
                 if (Mathf.Abs(input.x) > 0)
                 {
-                    spikeDir = new Vector2(facingDir * 1.0f, -0.25f);
+                    spikeDir = new Vector2(facingDir * 1.0f, 0f);
                 }
                 // 키 입력 없음: 기본 스파이크
                 else
                 {
-                    spikeDir = new Vector2(facingDir * 0.6f, -0.6f);
+                    spikeDir = new Vector2(facingDir * 0.6f, 0f);
                 }
             }
 
