@@ -10,4 +10,7 @@ public static class GameInfo
 
     // 방 ID를 저장할 변수
     public static string CurrentLobbyId = "";
+
+    // 싱글 플레이 모드인가?
+    public static bool isSinglePlay = false;
 }

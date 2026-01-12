@@ -18,12 +18,25 @@ public class MainMenuUIController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        GameInfo.isSinglePlay = false;
+
         mainUI.SetActive(true);
         multiplayUI.SetActive(false);
 
+        singlePlayButton.onClick.AddListener(SinglePlay);
         mulitiPlayButton.onClick.AddListener(ShowMultiplayUI);
         backButton.onClick.AddListener(ShowMainUI);
         quitButton.onClick.AddListener(GameQuit);
+    }
+
+    private void SinglePlay()
+    {
+        // 싱글 모드 설정
+        GameInfo.isSinglePlay = true;
+        GameInfo.myNickname = "single";
+
+        // 바로 게임 씬으로 이동
+        SceneLoaderManager.Instance.LoadScene("03_GameScene");
     }
 
     private void ShowMultiplayUI()

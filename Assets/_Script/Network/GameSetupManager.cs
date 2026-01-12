@@ -3,6 +3,7 @@ using NUnit.Framework.Constraints;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -72,15 +73,25 @@ public class GameSetupManager : NetworkBehaviour
         if (IsServer)
         {
             SpawnPlayers();
-            SpawnBall();
+            SpawnBall(); 
+            StartCoroutine(StartNewRoundCoroutine());
         }
-
-        StartCoroutine(StartNewRoundCoroutine());
     }
 
     private void Start()
     {
         SoundManager.Instance.PlayBGM("GameBgm");
+
+        if (GameInfo.isSinglePlay)
+        {
+            Debug.Log("싱글 모드 시작");
+
+            // 이전에 쓰던 전송 설정이 있다면 초기화 (Realy 끄고 로컬로)
+            var transport = NetworkManager.Singleton.GetComponent<Unity.Netcode.Transports.UTP.UnityTransport>();
+            transport.SetConnectionData("127.0.0.1", 7777);     // 로컬 주소로 강제 설정
+
+            NetworkManager.Singleton.StartHost();
+        }
     }
 
     private void OnDisable()
@@ -157,30 +168,55 @@ public class GameSetupManager : NetworkBehaviour
             // 이미 자리에 있다면 스킵
             if (pikachus[index] != null) continue;
 
-            // 위치 선정
-            Transform spawnTransform = playerSpawnPoints[index];
+            // 사람 소환
+            SpawnPlayerObject(client, index, false);
+        }
 
-            // 피카츄 생성 (서버에만 존재)
-            GameObject playerInstance = Instantiate(
-                playerPrefab,
-                spawnTransform.position,
-                Quaternion.identity
-                );
+        // 싱글 모드 전용 AI 소환
+        if (GameInfo.isSinglePlay)
+        {
+            // AI는 1번 자리, 소유권은 서버(본인)가 가짐
+            SpawnPlayerObject(NetworkManager.ServerClientId, 1, true);
+        }
+    }
 
-            // 이미지 좌우 반전
-            if(index == 1)
+    // 플레이어 생성
+    private void SpawnPlayerObject(ulong clientId, int index, bool isAI)
+    {
+        // 위치 선정
+        Transform spawnTransform = playerSpawnPoints[index];
+
+        // 피카츄 생성 (서버에만 존재)
+        GameObject playerInstance = Instantiate(
+            playerPrefab,
+            spawnTransform.position,
+            Quaternion.identity
+            );
+
+        // 이미지 좌우 반전
+        if (index == 1)
+        {
+            playerInstance.transform.localScale = new Vector2(-1f, 1f);
+        }
+
+        // 네트워크 스폰 + 소유권 부여
+        // => 이 오브젝트를 네트워크 모든 사람들에게 보여주고, 조종권한은 client에게 줘라
+        playerInstance.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
+
+        PlayerController pc = playerInstance.GetComponent<PlayerController>();
+        if (pc != null)
+        {
+            pikachus[index] = pc;
+
+            // AI일 때
+            if (isAI)
             {
-                playerInstance.transform.localScale = new Vector2(-1f, 1f);
-            }
+                // 플레이어 조작 스크립트 끄기
+                pc.enabled = false;
 
-            // 네트워크 스폰 + 소유권 부여
-            // => 이 오브젝트를 네트워크 모든 사람들에게 보여주고, 조종권한은 client에게 줘라
-            playerInstance.GetComponent<NetworkObject>().SpawnWithOwnership(client);
-
-            PlayerController pc = playerInstance.GetComponent<PlayerController>();
-            if (pc != null)
-            {
-                pikachus[index] = pc;
+                // AI 스크립트 붙이기
+                var ai = playerInstance.AddComponent<AIController>();
+                ai.speed = 6f;
             }
         }
     }
@@ -301,8 +337,19 @@ public class GameSetupManager : NetworkBehaviour
         // 플레이어 ready 상태 초기화
         ResetAllPlayersReadyState();
 
-        // 네트워크 씬 전환
-        NetworkManager.Singleton.SceneManager.LoadScene("02_LobbyScene", LoadSceneMode.Single);
+        string nextScene = GameInfo.isSinglePlay ? "01_MainMenuScene" : "02_LobbyScene";
+
+        // 싱글 모드는 방 폭파 후 씬 이동
+        if (GameInfo.isSinglePlay)
+        {
+            NetworkManager.Singleton.Shutdown();
+            SceneLoaderManager.Instance.LoadScene(nextScene);
+        }
+        else
+        {
+            // 네트워크 씬 전환
+            NetworkManager.Singleton.SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
+        }
     }
 
     // NetworkPlayerState를 사용해서 ready 초기화
