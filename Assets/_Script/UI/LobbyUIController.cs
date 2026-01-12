@@ -1,6 +1,9 @@
+using System.Collections;
 using System.Threading.Tasks;
 using TMPro;
 using Unity.Netcode;
+using Unity.Services.Authentication;
+using Unity.Services.Lobbies;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +16,7 @@ public class LobbyUIController : MonoBehaviour
     [Header("UI 버튼")]
     public Button readyButton;                      // 준비 버튼
     public Button startButton;                      // 시작 버튼
+    public Button leaveButton;                      // 나가기 버튼
 
     [Header("플레이어 정보 표시")]
     public TextMeshProUGUI hostNickname;            // 호스트 이름
@@ -20,6 +24,8 @@ public class LobbyUIController : MonoBehaviour
 
     public TextMeshProUGUI clientNickname;          // 클라이언트 이름
     public TextMeshProUGUI clientReadyState;        // 클라이언트 준비 상태
+
+    private bool isLeaving = false;
 
     private void Start()
     {
@@ -31,19 +37,110 @@ public class LobbyUIController : MonoBehaviour
         // 버튼 연결
         readyButton.onClick.AddListener(OnReadyClicked);
         startButton.onClick.AddListener(OnStartGameClicked);
+        leaveButton.onClick.AddListener(OnLeaveClicked);
 
         // 초기 상태 설정
         startButton.interactable = false;       // 게임 시작 가능할 때 활성화
-        if (!NetworkManager.Singleton.IsServer)
+
+        if (NetworkManager.Singleton.IsServer)
         {
-            // 호스트가 아니면 게임 시작 버튼 숨기기
+            // 호스트: 시작버튼, 나가기 버튼
+            startButton.gameObject.SetActive(true);
+            readyButton.gameObject.SetActive(false);
+            leaveButton.gameObject.SetActive(true);
+
+            // 호스트 자동 레디
+            StartCoroutine(HostAutoReadyCoroutine());
+        }
+        else
+        {
+            // 클라이언트: 준비버튼, 나가기버튼
             startButton.gameObject.SetActive(false);
+            readyButton.gameObject.SetActive(true);
+            leaveButton.gameObject.SetActive(true);
+        }
+
+        if (NetworkManager.Singleton != null)
+        {
+            NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (NetworkManager.Singleton != null)
+        {
+            NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnect;
         }
     }
 
     private void Update()
     {
         UpdatePlayerInfo();
+    }
+
+    private IEnumerator HostAutoReadyCoroutine()
+    {
+        // 내 플레이어 오브젝트가 생성될 때까지 대기 (null 이 아닐때까지)
+        yield return new WaitUntil(() => NetworkManager.Singleton.LocalClient != null);
+
+        OnReadyClicked();
+    }
+
+    // 나가기 버튼 클릭
+    async void OnLeaveClicked()
+    {
+        if (isLeaving) return;
+
+        isLeaving = true;
+
+        SoundManager.Instance.PlaySFX("Menu");
+
+        // GameData에 적힌 ID를 보고 로비 서비스 정리
+        await CleanUpLobby();
+
+        // 네트워크 종료
+        if (NetworkManager.Singleton != null)
+        {
+            NetworkManager.Singleton.Shutdown();
+        }
+
+        // 메인 씬 이동
+        SceneLoaderManager.Instance.LoadScene("01_MainMenuScene");
+    }
+
+    // 로비 청소
+    private async Task CleanUpLobby()
+    {
+        string lobbyId = GameInfo.CurrentLobbyId;
+        if (string.IsNullOrEmpty(lobbyId)) return;
+
+        try
+        {
+            string playerId = AuthenticationService.Instance.PlayerId;
+
+            // 내가 호스트 서버 => 방 삭제
+            if (NetworkManager.Singleton.IsServer)
+            {
+                await LobbyService.Instance.DeleteLobbyAsync(lobbyId);
+                Debug.Log("방 삭제");
+            }
+
+            // 클라이언트 => 이름만 삭제
+            else
+            {
+                await LobbyService.Instance.RemovePlayerAsync(lobbyId, playerId);
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log($"로비 정리 실패: {e.Message}");
+        }
+        finally
+        {
+            GameInfo.CurrentLobbyId = "";
+            GameInfo.currentLobbyCode = "";
+        }
     }
 
     // 준비 버튼 클릭
@@ -121,6 +218,17 @@ public class LobbyUIController : MonoBehaviour
             startButton.interactable = (playerCount == 2 && isAllReady);
         }
 
+    }
+
+    private void OnClientDisconnect(ulong clientId)
+    {
+        if (!isLeaving)
+        {
+            if (!NetworkManager.Singleton.IsServer)
+            {
+                SceneLoaderManager.Instance.LoadScene("01_MainMenuScene");
+            }
+        }
     }
 
     [ClientRpc]

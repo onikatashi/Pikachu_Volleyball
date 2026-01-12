@@ -4,7 +4,6 @@ using Unity.Netcode.Components;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
-using static UnityEditor.PlayerSettings;
 
 public class PlayerController : NetworkBehaviour
 {

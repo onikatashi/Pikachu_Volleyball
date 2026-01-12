@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameSetupManager : NetworkBehaviour 
@@ -38,7 +39,7 @@ public class GameSetupManager : NetworkBehaviour
     // 점수 변수 (NetworkVariable)
     private NetworkVariable<int> p1Score = new NetworkVariable<int>(0);
     private NetworkVariable<int> p2Score = new NetworkVariable<int>(0);
-    private const int WIN_SCORE = 15;
+    private const int WIN_SCORE = 3;
 
     private BallController ballController;      // 현재 소환된 공을 기억해둠
     private Transform nextBallPos;              // 다음 게임 시작 됐을 때, 공 위치
@@ -212,6 +213,7 @@ public class GameSetupManager : NetworkBehaviour
             p1Score.Value++;
         }
 
+        // 게임 종료 체크
         if (p1Score.Value >= WIN_SCORE ||  p2Score.Value >= WIN_SCORE)
         {
             SoundManager.Instance.PlaySFX("GameEnd");
@@ -229,6 +231,10 @@ public class GameSetupManager : NetworkBehaviour
             }
 
             Debug.Log("게임 종료!");
+            yield return new WaitForSeconds(3.0f);
+
+            StartCoroutine(ReturnToLobbySequence());
+
             yield break;
         }
 
@@ -273,6 +279,32 @@ public class GameSetupManager : NetworkBehaviour
         yield return new WaitForSeconds(SceneLoaderManager.Instance.fadeDuration);
 
         StartCoroutine(StartNewRoundCoroutine());
+    }
+
+    private IEnumerator ReturnToLobbySequence()
+    {
+        // 화면 검은색으로 전환
+        GameSetupFadeInClientRpc();
+        float fadeDuration = SceneLoaderManager.Instance.fadeDuration;
+        yield return new WaitForSeconds(fadeDuration);
+
+        // 플레이어 ready 상태 초기화
+        ResetAllPlayersReadyState();
+
+        // 네트워크 씬 전환
+        NetworkManager.Singleton.SceneManager.LoadScene("02_LobbyScene", LoadSceneMode.Single);
+    }
+
+    // NetworkPlayerState를 사용해서 ready 초기화
+    private void ResetAllPlayersReadyState()
+    {
+        foreach (var playerState in NetworkPlayerState.allPlayers)
+        {
+            if (playerState != null)
+            {
+                playerState.isReady.Value = false;
+            }
+        }
     }
 
     [ClientRpc]

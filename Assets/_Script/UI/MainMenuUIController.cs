@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,12 +23,7 @@ public class MainMenuUIController : MonoBehaviour
 
         mulitiPlayButton.onClick.AddListener(ShowMultiplayUI);
         backButton.onClick.AddListener(ShowMainUI);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        quitButton.onClick.AddListener(GameQuit);
     }
 
     private void ShowMultiplayUI()
@@ -40,5 +36,18 @@ public class MainMenuUIController : MonoBehaviour
     {
         mainUI.SetActive(true);
         multiplayUI.SetActive(false);
+    }
+
+    private void GameQuit()
+    {
+        // 에디터에서 실행 중일 때, 플레이 중지
+#if UNITY_EDITOR
+
+        EditorApplication.isPlaying = false;
+
+        // 빌드된 게임일 때, 실제 종료
+#else
+        Application.Quit();
+#endif
     }
 }

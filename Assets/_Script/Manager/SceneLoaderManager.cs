@@ -91,19 +91,6 @@ public class SceneLoaderManager : MonoBehaviour
         SceneManager.LoadScene("01_MainMenuScene");
     }
 
-    // 게임 1점이 났을 때, 잠시 화면 어두워지고 밝아지는 연출
-    public IEnumerator FadeInOutGameSetup()
-    {
-        // 화면 까매지기
-        yield return StartCoroutine(Fade(fadePanel, 0f, 1f));
-
-        // 잠시 대기
-        yield return new WaitForSeconds(0.3f);
-
-        // 다시 밝아짐
-        yield return StartCoroutine(Fade(fadePanel, 1f, 0f));
-    }
-
     // 씬 로드 직전에 호출
     public IEnumerator FadeInBlackBackground()
     {

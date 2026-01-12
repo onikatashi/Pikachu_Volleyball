@@ -7,4 +7,7 @@ public static class GameInfo
 
     // 방 코드를 저장할 변수
     public static string currentLobbyCode = "";
+
+    // 방 ID를 저장할 변수
+    public static string CurrentLobbyId = "";
 }
