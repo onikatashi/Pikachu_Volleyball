@@ -197,6 +197,10 @@ public class PlayerController : NetworkBehaviour
     // 스파이크 처리
     private void HandleSpike()
     {
+        if (GameSetupManager.Instance == null) return;
+
+        if (!GameSetupManager.Instance.isGameActive.Value) return;
+
         // 현재 누르고 있는 방향키 값 (-1, 0, 1)
         float currentMoveInput = InputManager.MoveInput;
         
@@ -211,7 +215,7 @@ public class PlayerController : NetworkBehaviour
         }
 
         // 스파이크
-        else
+        if (!isGrounded.Value)
         {
             Spike();
         }

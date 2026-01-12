@@ -46,6 +46,8 @@ public class GameSetupManager : NetworkBehaviour
 
     private PlayerController[] pikachus = new PlayerController[2];
 
+    private bool isScored = false;              // 중복 점수 획득 및 게임 종료후 점수 획득 방지용
+
     private void Awake()
     {
         if (Instance == null)
@@ -90,6 +92,8 @@ public class GameSetupManager : NetworkBehaviour
     private IEnumerator StartNewRoundCoroutine()
     {
         if(!IsServer) yield break;
+
+        isScored = false;
 
         // Ready 애니메이션 재생
         PlayReadyAnimationClientRpc();
@@ -196,6 +200,12 @@ public class GameSetupManager : NetworkBehaviour
     {
         // 로직은 서버에서 진행
         if (!IsServer) return;
+
+        if (p1Score.Value >= WIN_SCORE ||  p2Score.Value >= WIN_SCORE) return;
+
+        if (isScored) return;
+
+        isScored = true;
 
         StartCoroutine(ProcessScoreSequence(objName));
     }
