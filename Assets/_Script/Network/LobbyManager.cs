@@ -19,8 +19,41 @@ public class LobbyManager : MonoBehaviour
     [Header("방 코드 InputField")]
     public TMP_InputField joinCode;         // 방 코드 입력 필드
 
+    [Header("에러 팝업 UI")]
+    public GameObject errorPopupPanel;      // 에러 떴을 때 켤 패널
+    public TextMeshProUGUI errorText;       // 에러 텍스트
+    public Button errorConfirmButton;       // 에러 패널 종료(확인) 버튼
+
     private const int MAX_PLAYER = 2;   // 최대 2인
     private Lobby currentLobby;
+
+    private void Start()
+    {
+        // 3번째 플레이어 접속을 막기 위한 승인 로직 등록
+        if (NetworkManager.Singleton != null)
+        {
+            NetworkManager.Singleton.ConnectionApprovalCallback = ApprovalCheck;
+        }
+        errorConfirmButton.onClick.AddListener(CloseErrorPopup);
+        errorPopupPanel.SetActive(false);
+    }
+
+    // 접속 승인 검사 함수 (호스트에서 실행)
+    private void ApprovalCheck(NetworkManager.ConnectionApprovalRequest request,
+        NetworkManager.ConnectionApprovalResponse response)
+    {
+        if (NetworkManager.Singleton.ConnectedClientsIds.Count >= MAX_PLAYER)
+        {
+            response.Approved = false;
+            response.Reason = "Room is full";
+            Debug.Log("인원 초과로 접속 거부");
+        }
+        else
+        {
+            response.Approved = true;
+        }
+        response.Pending = false;
+    }
 
     // 방 만들기 (Host)
     public async void CreateLobby()
@@ -73,9 +106,20 @@ public class LobbyManager : MonoBehaviour
             // 로비 씬으로 이동 (Netcode의 씬 전환 기능 사용)
             NetworkManager.Singleton.SceneManager.LoadScene("02_LobbyScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
         }
-        catch (System.Exception e)
+        catch (LobbyServiceException e)
         {
             Debug.LogError($"방 만들기 실패: {e}");
+            ShowError("로비 생성 실패!");
+        }
+        catch (RelayServiceException e)
+        {
+            Debug.LogError($"릴레이 생성 실패: {e}");
+            ShowError("릴레이 생성 실패!");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"알수 없는 에러: {e}");
+            ShowError("알 수 없는 오류가 발생했습니다.");
         }
     }
 
@@ -125,9 +169,31 @@ public class LobbyManager : MonoBehaviour
             NetworkManager.Singleton.StartClient();
         }
 
+        catch (LobbyServiceException e)
+        {
+            Debug.LogError($"방 입장 실패: {e}");
+            if (e.Reason == LobbyExceptionReason.LobbyFull)
+            {
+                ShowError("방이 꽉 찼습니다!");
+            }
+            else if (e.Reason == LobbyExceptionReason.LobbyNotFound)
+            {
+                ShowError("존재하지 않는 방 코드입니다.");
+            }
+            else
+            {
+                ShowError("로비 입장 실패");
+            }
+        }
+        catch (RelayServiceException e)
+        {
+            Debug.LogError(e);
+            ShowError("서버 연결 실패");
+        }
         catch (System.Exception e)
         {
             Debug.LogError($"방 입장 실패: {e}");
+            ShowError("알 수 없는 오류로 입장할 수 없습니다.");
         }
     }
 
@@ -141,6 +207,32 @@ public class LobbyManager : MonoBehaviour
         else
         {
             GameInfo.myNickname = "Player";
+        }
+    }
+
+    // 에러 메세지를 띄우는 함수
+    private void ShowError(string message)
+    {
+        if (errorPopupPanel != null)
+        {
+            errorPopupPanel.SetActive(true);
+            if (errorText != null)
+            {
+                errorText.text = message;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("에러 팝업 UI가 연결되지 않음");
+        }
+    }
+
+    // 팝업 닫기 버튼
+    public void CloseErrorPopup()
+    {
+        if (errorPopupPanel != null)
+        {
+            errorPopupPanel.SetActive(false);
         }
     }
 }
