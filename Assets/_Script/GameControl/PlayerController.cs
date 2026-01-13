@@ -22,6 +22,8 @@ public class PlayerController : NetworkBehaviour
     [Header("슬라이딩 설정")]
     public float slideForce = 8f;       // 슬라이딩 속도
     public float slideDuration = 0.4f;  // 슬라이딩 지속 시간
+
+    public bool IsSliding => isSliding; // 읽기 전용 프로퍼티
     private bool isSliding = false;     // 슬라이딩 했는지
 
     [Header("스파이크 설정")]
@@ -57,6 +59,8 @@ public class PlayerController : NetworkBehaviour
     int hashIsWin;
     int hashIsDefeat;
 
+    public bool isAI = false;
+
     // 초기화
     private void Awake()
     {
@@ -90,8 +94,11 @@ public class PlayerController : NetworkBehaviour
         // 내 캐릭터일 때 InputManager 이벤트 연결
         else
         {
-            InputManager.OnJump += HandleJump;
-            InputManager.OnSpike += HandleSpike;
+            if (!isAI)
+            {
+                InputManager.OnJump += HandleJump;
+                InputManager.OnSpike += HandleSpike;
+            }
         }
 
         if (transform.position.x < 0)
@@ -116,8 +123,11 @@ public class PlayerController : NetworkBehaviour
 
         if (IsOwner)
         {
-            InputManager.OnJump -= HandleJump;
-            InputManager.OnSpike -= HandleSpike;
+            if (!isAI)
+            {
+                InputManager.OnJump -= HandleJump;
+                InputManager.OnSpike -= HandleSpike;
+            }
         }
     }
 
@@ -130,15 +140,17 @@ public class PlayerController : NetworkBehaviour
 
         if (!GameSetupManager.Instance.isGameActive.Value) return;
 
-        // 슬라이딩 중이 아닐 때만 일반 이동 가능
-        if (!isSliding)
-        {
-            Move();
-        }
-
         // 위치 강제 고정
         float clampedX = Mathf.Clamp(transform.position.x, minX, maxX);
         transform.position = new Vector2(clampedX, transform.position.y);
+
+        if (isAI) return;
+
+        // 슬라이딩 중이 아닐 때만 일반 이동 가능
+        if (!isSliding)
+        {
+            Move(InputManager.MoveInput);
+        }
 
         float x = InputManager.MoveInput;
         float y = 0f;
@@ -152,6 +164,7 @@ public class PlayerController : NetworkBehaviour
         {
             UpdateInputDirServerRpc(currentDir);
         }
+        
     }
 
     private void LateUpdate()
@@ -168,16 +181,24 @@ public class PlayerController : NetworkBehaviour
         shadowTransform.position = shadowPos;
     }
 
-    // 이동 처리
-    void Move()
+    public void SetAIState(bool state)
     {
-        float moveInput = InputManager.MoveInput;
+        isAI = state;
+        if (isAI)
+        {
+            InputManager.OnJump -= HandleJump;
+            InputManager.OnSpike -= HandleSpike;
+        }
+    }
 
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+    // 이동 처리
+    public void Move(float dir)
+    {
+        rb.linearVelocity = new Vector2(dir * moveSpeed, rb.linearVelocity.y);
     }
 
     // 점프 처리
-    private void HandleJump()
+    public void HandleJump()
     {
         if (GameSetupManager.Instance == null) return;
 
@@ -197,35 +218,37 @@ public class PlayerController : NetworkBehaviour
     // 스파이크 처리
     private void HandleSpike()
     {
+        if (isAI) return;
         if (GameSetupManager.Instance == null) return;
-
         if (!GameSetupManager.Instance.isGameActive.Value) return;
 
         // 현재 누르고 있는 방향키 값 (-1, 0, 1)
-        float currentMoveInput = InputManager.MoveInput;
-        
+        float x = InputManager.MoveInput;
+        float y = 0f;
+        if (Keyboard.current.upArrowKey.isPressed) y = 1f;
+        else if (Keyboard.current.downArrowKey.isPressed) y = -1f;
+
         // 슬라이딩
         if (isGrounded.Value && !isSliding)
         {
-            if (currentMoveInput != 0)
+            if (x != 0)
             {
-                PlayActionSoundServerRpc("Jump");
-                StartCoroutine(Sliding(currentMoveInput));
+                StartCoroutine(Sliding(x));
             }
         }
 
         // 스파이크
         if (!isGrounded.Value)
         {
-            Spike();
+            Spike(x, y);
         }
     }
 
     // 슬라이딩
-    private IEnumerator Sliding(float direction)
+    public IEnumerator Sliding(float direction)
     {
         isSliding = true;
-
+        PlayActionSoundServerRpc("Jump");
         TriggerAnimationPlayServerRpc(hashIsSliding);
 
         // 입력된 방향으로 힘을 가함
@@ -256,22 +279,15 @@ public class PlayerController : NetworkBehaviour
     }
 
     // 스파이크
-    private void Spike()
+    public void Spike(float moveDir, float yDir)
     {
         // 쿨타임 체크 (로컬에서 거름)
         if (Time.time < lastSpikeTime + spikeCooldown) return;
 
         PlayActionSoundServerRpc("Spike");
-
-        float x = InputManager.MoveInput;
-        float y = 0f;
-        if (Keyboard.current.upArrowKey.isPressed) y = 1f;
-        else if (Keyboard.current.downArrowKey.isPressed) y = -1f;
-
-        Vector2 currentDir = new Vector2(x, y);
+        Vector2 currentDir = new Vector2(moveDir, yDir);
 
         StartCoroutine(SpikeCoroutine(currentDir));
-
         TriggerAnimationPlayServerRpc(hashIsSpike);
     }
 

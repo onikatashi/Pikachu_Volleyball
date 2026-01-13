@@ -8,6 +8,13 @@ public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
 
+    // 현재 설정된 키들 (기본값)
+    public Key keyUp = Key.UpArrow;
+    public Key keyDown = Key.DownArrow;
+    public Key keyLeft = Key.LeftArrow;
+    public Key keyRight = Key.RightArrow;
+    public Key keySpike = Key.Enter;
+
     // 연속 입력되는 액션 - 프로퍼티로 노출
     public static float MoveInput {  get; private set; }
 
@@ -25,6 +32,11 @@ public class InputManager : MonoBehaviour
     private Action<InputAction.CallbackContext> onMoveCanceled;
     private Action<InputAction.CallbackContext> onJumpPerformed;
     private Action<InputAction.CallbackContext> onSpikePerformed;
+
+    private void Awake()
+    {
+        if (I)
+    }
 
     private void OnEnable()
     {

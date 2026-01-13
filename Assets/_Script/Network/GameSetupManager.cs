@@ -1,9 +1,5 @@
-using NUnit.Framework;
-using NUnit.Framework.Constraints;
 using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -72,8 +68,8 @@ public class GameSetupManager : NetworkBehaviour
         // 플레이어 생성 권한은 호스트(Server)에게만 있음.
         if (IsServer)
         {
-            SpawnPlayers();
             SpawnBall(); 
+            SpawnPlayers();
             StartCoroutine(StartNewRoundCoroutine());
         }
     }
@@ -211,12 +207,13 @@ public class GameSetupManager : NetworkBehaviour
             // AI일 때
             if (isAI)
             {
-                // 플레이어 조작 스크립트 끄기
-                pc.enabled = false;
-
                 // AI 스크립트 붙이기
                 var ai = playerInstance.AddComponent<AIController>();
-                ai.speed = 6f;
+
+                if (ballController != null)
+                {
+                    ai.SetBallTarget(ballController.transform);
+                }
             }
         }
     }
@@ -337,18 +334,16 @@ public class GameSetupManager : NetworkBehaviour
         // 플레이어 ready 상태 초기화
         ResetAllPlayersReadyState();
 
-        string nextScene = GameInfo.isSinglePlay ? "01_MainMenuScene" : "02_LobbyScene";
-
         // 싱글 모드는 방 폭파 후 씬 이동
         if (GameInfo.isSinglePlay)
         {
             NetworkManager.Singleton.Shutdown();
-            SceneLoaderManager.Instance.LoadScene(nextScene);
+            SceneLoaderManager.Instance.LoadScene("01_MainMenuScene");
         }
         else
         {
             // 네트워크 씬 전환
-            NetworkManager.Singleton.SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
+            NetworkManager.Singleton.SceneManager.LoadScene("02_LobbyScene", LoadSceneMode.Single);
         }
     }
 

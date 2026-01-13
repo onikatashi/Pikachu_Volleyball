@@ -27,6 +27,8 @@ public class ConnectionManager : MonoBehaviour
     // 연결이 끊겼을 때 호출되는 함수
     private void OnClientDisconnect(ulong clientId)
     {
+        if (GameInfo.isSinglePlay) return;
+
         // 내가 클라이언트, 호스트 연결이 끊김
         if (!NetworkManager.Singleton.IsServer && NetworkManager.Singleton.DisconnectReason != string.Empty)
         {

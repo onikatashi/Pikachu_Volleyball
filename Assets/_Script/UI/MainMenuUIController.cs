@@ -31,6 +31,8 @@ public class MainMenuUIController : MonoBehaviour
 
     private void SinglePlay()
     {
+        SoundManager.Instance.PlaySFX("Select");
+
         // 싱글 모드 설정
         GameInfo.isSinglePlay = true;
         GameInfo.myNickname = "single";
