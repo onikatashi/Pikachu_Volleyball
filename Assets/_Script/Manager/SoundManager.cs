@@ -43,6 +43,10 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     { 
+        masterVolume = SaveLoadManager.Instance.settingData.masterVolume;
+        bgmVolume = SaveLoadManager.Instance.settingData.bgmVolume;
+        sfxVolume = SaveLoadManager.Instance.settingData.sfxVolume;
+
         RefreshSourceVolume();
     }
 

@@ -35,7 +35,7 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        if (I)
+      
     }
 
     private void OnEnable()
