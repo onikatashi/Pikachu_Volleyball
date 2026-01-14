@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6901ebb83898f6044a224da0ef3275c6, type: 3}
-  m_Name: _BGMSoundPack
+  m_Script: {fileID: 11500000, guid: bdc47f406b748e74fa403364bd1371e3, type: 3}
+  m_Name: Title
   m_EditorClassIdentifier: 
-  soundList:
-  - {fileID: 11400000, guid: 000e4d2aa039c2d48a42fa1f75d59534, type: 2}
-  - {fileID: 11400000, guid: c249d687db2cab041b43b6299c62f55d, type: 2}
+  soundName: Title
+  clip: {fileID: 8300000, guid: ef2e85c4150901242a90c7e39c2fb6c3, type: 3}
+  volume: 1
+  pitch: 1
+  loop: 0
+  isBGM: 0

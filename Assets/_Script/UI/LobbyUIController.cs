@@ -168,6 +168,11 @@ public class LobbyUIController : MonoBehaviour
             int waitTime = (int)(SceneLoaderManager.Instance.fadeDuration * 1000);
             await Task.Delay(waitTime);
 
+            if (!string.IsNullOrEmpty(SoundManager.Instance.GetCurrentBGMTitle()))
+            {
+                SoundManager.Instance.StopBGM();
+            }
+
             NetworkManager.Singleton.SceneManager.LoadScene
                 ("03_GameScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
         }

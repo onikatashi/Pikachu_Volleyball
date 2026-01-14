@@ -44,12 +44,14 @@ public class GameSetupManager : NetworkBehaviour
     private PlayerController[] pikachus = new PlayerController[2];
 
     private bool isScored = false;              // 중복 점수 획득 및 게임 종료후 점수 획득 방지용
+    public bool isGameOver = false;             // 게임 종료 상태 체크
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            isGameOver = false;
         }
         else
         {
@@ -273,6 +275,7 @@ public class GameSetupManager : NetworkBehaviour
                 pikachus[i].EndGameResultClientRpc(isWinner);
             }
 
+            isGameOver = true;
             Debug.Log("게임 종료!");
             yield return new WaitForSeconds(3.0f);
 

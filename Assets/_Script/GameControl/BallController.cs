@@ -131,12 +131,12 @@ public class BallController : NetworkBehaviour
                 // 앞 + 위 => 대각선 위 방향
                 if (Mathf.Abs(input.x) > 0)
                 {
-                    spikeDir = new Vector2(facingDir * 0.7f, 0.8f);
+                    spikeDir = new Vector2(facingDir * 0.65f, 0.7f);
                 }
                 // 위 방향키만
                 else
                 {
-                    spikeDir = new Vector2(facingDir * 0.3f, 1f);
+                    spikeDir = new Vector2(facingDir * 0.35f, 0.9f);
                 }
             }
 
@@ -151,7 +151,7 @@ public class BallController : NetworkBehaviour
                 // 아래 방향키만
                 else
                 {
-                    spikeDir = new Vector2(facingDir * 0.3f, -1f);
+                    spikeDir = new Vector2(facingDir * 0.35f, -1f);
                 }
             }
 
@@ -161,12 +161,12 @@ public class BallController : NetworkBehaviour
                 // 앞 방향키 눌렸을 때
                 if (Mathf.Abs(input.x) > 0)
                 {
-                    spikeDir = new Vector2(facingDir * 1.0f, 0f);
+                    spikeDir = new Vector2(facingDir * 1.2f, 0f);
                 }
                 // 키 입력 없음: 기본 스파이크
                 else
                 {
-                    spikeDir = new Vector2(facingDir * 0.6f, 0f);
+                    spikeDir = new Vector2(facingDir * 0.7f, 0f);
                 }
             }
 

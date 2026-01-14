@@ -50,6 +50,7 @@ public class SaveLoadManager : MonoBehaviour
     {
         if (!File.Exists(settingDataPath))
         {
+            settingData = new GameSettingData();
             return false;
         }
 

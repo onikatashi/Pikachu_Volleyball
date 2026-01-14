@@ -66,6 +66,11 @@ public class AIController : MonoBehaviour
             return;
         }
 
+        if (GameSetupManager.Instance.isGameOver)
+        {
+            return;
+        }
+
         if (ballTransform == null || myPlayerController == null) return;
 
         // 슬라이딩 중이면 AI 판단 중지

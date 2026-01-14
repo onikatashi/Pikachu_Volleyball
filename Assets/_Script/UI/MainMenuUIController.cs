@@ -15,6 +15,9 @@ public class MainMenuUIController : MonoBehaviour
     public GameObject multiplayUI;          // 멀티 플레이 UI 집합체
     public Button backButton;               // 뒤로 버튼
 
+    [Header("설정 패널 UI")]
+    public GameObject settingPanel;         // 설정창 패널
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,8 +28,11 @@ public class MainMenuUIController : MonoBehaviour
 
         singlePlayButton.onClick.AddListener(SinglePlay);
         mulitiPlayButton.onClick.AddListener(ShowMultiplayUI);
+        settingButton.onClick.AddListener(ShowSettingUI);
         backButton.onClick.AddListener(ShowMainUI);
         quitButton.onClick.AddListener(GameQuit);
+
+        settingPanel.SetActive(false);
     }
 
     private void SinglePlay()
@@ -36,6 +42,12 @@ public class MainMenuUIController : MonoBehaviour
         // 싱글 모드 설정
         GameInfo.isSinglePlay = true;
         GameInfo.myNickname = "single";
+
+        // 브금 종료
+        if (!string.IsNullOrEmpty(SoundManager.Instance.GetCurrentBGMTitle()))
+        {
+            SoundManager.Instance.StopBGM();
+        }
 
         // 바로 게임 씬으로 이동
         SceneLoaderManager.Instance.LoadScene("03_GameScene");
@@ -51,6 +63,11 @@ public class MainMenuUIController : MonoBehaviour
     {
         mainUI.SetActive(true);
         multiplayUI.SetActive(false);
+    }
+
+    private void ShowSettingUI()
+    {
+        settingPanel.SetActive(true);
     }
 
     private void GameQuit()

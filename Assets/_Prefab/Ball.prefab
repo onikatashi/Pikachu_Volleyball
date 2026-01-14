@@ -222,10 +222,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  hitUpForce: 8
-  hitForwardFroce: 5
+  hitUpForce: 7.5
+  hitForwardFroce: 5.5
   rotationMultiplier: 50
-  spikeSpeed: 18
+  spikeSpeed: 20
   trailParticle: {fileID: 7312703242343315253}
 --- !u!58 &6706081564947226556
 CircleCollider2D:
