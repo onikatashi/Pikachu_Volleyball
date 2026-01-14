@@ -296,7 +296,7 @@ MonoBehaviour:
   shadowTransform: {fileID: 8835162859325987402}
   groundY: 0
   moveSpeed: 6
-  jumpForce: 14
+  jumpForce: 13
   slideForce: 10
   slideDuration: 0.5
   spikeDuration: 0.2

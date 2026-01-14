@@ -104,7 +104,7 @@ public class BallController : NetworkBehaviour
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
         if (player == null) return;
 
-        float facingDir = collision.transform.position.x < transform.position.x ? 1 : -1;
+        float facingDir = collision.transform.position.x < transform.position.x ? 1f : -1f;
 
         // 스파이크 상태일 때
         if (player.isSpike.Value)
