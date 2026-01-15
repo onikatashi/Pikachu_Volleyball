@@ -70,17 +70,26 @@ public class GameSetupManager : NetworkBehaviour
         // 플레이어 생성 권한은 호스트(Server)에게만 있음.
         if (IsServer)
         {
-            if(SaveLoadManager.Instance != null)
+            int finalScore = 15;
+
+            if (GameInfo.isSinglePlay)
             {
-                int settingScore = SaveLoadManager.Instance.settingData.winningScore;
-                winScore.Value = (settingScore > 0) ? settingScore : 15;
+                // 싱글: 개인 설정에서 가져옴
+                if (SaveLoadManager.Instance != null)
+                {
+                    int settingScore = SaveLoadManager.Instance.settingData.winningScore;
+                    winScore.Value = (settingScore > 0) ? settingScore : 15;
+                }
             }
             else
             {
-                // 매니저 없으면 기본 값
-                winScore.Value = 15;
+                // 멀티: 로비 설정에서 가져옴
+                finalScore = GameInfo.networkWinningScore;
             }
-                SpawnBall(); 
+
+            winScore.Value = finalScore;
+
+            SpawnBall();
             SpawnPlayers();
             StartCoroutine(StartNewRoundCoroutine());
         }
@@ -167,11 +176,37 @@ public class GameSetupManager : NetworkBehaviour
         // 현재 접속해 있는 모든 유저들의 ID 목록을 가져옴
         var clients = NetworkManager.Singleton.ConnectedClientsIds;
 
+        bool hostWantsLeft = true;
+        if (GameInfo.isSinglePlay)
+        {
+            // 싱글: 개인 설정에서 가져옴
+            if (SaveLoadManager.Instance != null)
+            {
+                hostWantsLeft = SaveLoadManager.Instance.settingData.isLeft;
+            }
+        }
+        else
+        {
+            // 멀티: 로비 설정에서 가져옴
+            hostWantsLeft = GameInfo.isHostLeftSide;
+        }
+
         foreach (var client in clients)
         {
+            int index = 0;
+
             // 클라이언트 ID가 ServerClinetId(보통 0, 호스트)와 같으면 0번 플레이어
             // 아니면 1번 플레이어
-            int index = (client == NetworkManager.ServerClientId) ? 0 : 1;
+            if (client == NetworkManager.ServerClientId)
+            {
+                // 방장인 경우 설정값 따라가기
+                index = hostWantsLeft ? 0 : 1;
+            }
+            else
+            {
+                // 클라이언트 경우
+                index = hostWantsLeft ? 1 : 0;
+            }
 
             // 이미 자리에 있다면 스킵
             if (pikachus[index] != null) continue;
@@ -183,8 +218,10 @@ public class GameSetupManager : NetworkBehaviour
         // 싱글 모드 전용 AI 소환
         if (GameInfo.isSinglePlay)
         {
+            int aiIndex = hostWantsLeft ? 1 : 0;
+
             // AI는 1번 자리, 소유권은 서버(본인)가 가짐
-            SpawnPlayerObject(NetworkManager.ServerClientId, 1, true);
+            SpawnPlayerObject(NetworkManager.ServerClientId, aiIndex, true);
         }
     }
 

@@ -21,4 +21,7 @@ public class GameSettingData
 
     // 승리 점수
     public int winningScore = 15;
+
+    // 게임 위치 설정
+    public bool isLeft = true;
 }

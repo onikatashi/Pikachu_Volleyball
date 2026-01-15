@@ -56,7 +56,7 @@ public class ConnectionManager : MonoBehaviour
     private void HandleHostQuit()
     {
         // 데이터 초기화
-        GameInfo.CurrentLobbyId = "";
+        GameInfo.currentLobbyId = "";
         GameInfo.currentLobbyCode = "";
 
         // 네트워크 매니저 종료
@@ -74,7 +74,7 @@ public class ConnectionManager : MonoBehaviour
         // 실제로는 Lobby PlayerId와 매핑해둔 정보를 써야함
         // 1:1 게임이기 때문에 '내가 아닌 다른 한 명'을 지우는 식으로 처리 가능
 
-        string lobbyId = GameInfo.CurrentLobbyId;
+        string lobbyId = GameInfo.currentLobbyId;
 
         try
         {

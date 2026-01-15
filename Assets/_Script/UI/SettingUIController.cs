@@ -44,6 +44,9 @@ public class SettingUIController : MonoBehaviour
     [Header("승리 점수 설정")]
     public TMP_Dropdown scoreDropdown;              // 승리 점수
 
+    [Header("위치 설정")]
+    public Toggle leftSideToggle;
+
     [Header("설정 종료 버튼")]
     public Button exitSettingBtn;                   // 설정 종료 버튼
 
@@ -69,6 +72,7 @@ public class SettingUIController : MonoBehaviour
         InitResolutionUI();
         UpdateKeyTexts();
         InitScoreUI();
+        leftSideToggle.isOn = SaveLoadManager.Instance.settingData.isLeft;
 
         // 해상도 이벤트 연결
         resolutionDropdown.onValueChanged.AddListener(SetResolution);
@@ -93,6 +97,9 @@ public class SettingUIController : MonoBehaviour
 
         // 승리 점수 이벤트 연결
         scoreDropdown.onValueChanged.AddListener(SetWinningScore);
+
+        // 위치 지정 이벤트 연결
+        leftSideToggle.onValueChanged.AddListener(SetPlayerSide);
 
         // 설정 패널 종료 버튼 연결
         exitSettingBtn.onClick.AddListener(ExitSettingPanel);
@@ -332,6 +339,12 @@ public class SettingUIController : MonoBehaviour
     {
         int selectedScore = scoreOptions[index];
         SaveLoadManager.Instance.settingData.winningScore = selectedScore;
+        SaveLoadManager.Instance.SaveSettingData();
+    }
+
+    public void SetPlayerSide(bool isLeft)
+    {
+        SaveLoadManager.Instance.settingData.isLeft = isLeft;
         SaveLoadManager.Instance.SaveSettingData();
     }
 

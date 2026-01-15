@@ -9,7 +9,11 @@ public static class GameInfo
     public static string currentLobbyCode = "";
 
     // 방 ID를 저장할 변수
-    public static string CurrentLobbyId = "";
+    public static string currentLobbyId = "";
+
+    // 멀티플레이 로비 설정값
+    public static int networkWinningScore = 15;
+    public static bool isHostLeftSide = true;
 
     // 싱글 플레이 모드인가?
     public static bool isSinglePlay = false;

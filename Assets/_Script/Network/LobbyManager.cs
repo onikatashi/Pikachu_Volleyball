@@ -82,7 +82,7 @@ public class LobbyManager : MonoBehaviour
 
             Debug.Log($"로비 생성 완료. Lobby Code: {currentLobby.LobbyCode}");
             GameInfo.currentLobbyCode = currentLobby.LobbyCode;
-            GameInfo.CurrentLobbyId = currentLobby.Id;
+            GameInfo.currentLobbyId = currentLobby.Id;
 
             // Host로 게임 시작 (Relay 연결 설정)
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetHostRelayData(
@@ -143,7 +143,7 @@ public class LobbyManager : MonoBehaviour
             currentLobby = await LobbyService.Instance.JoinLobbyByCodeAsync(lobbyCode);
             Debug.Log($"로비 입장 성공. 로비 ID {currentLobby.Id}");
             GameInfo.currentLobbyCode = currentLobby.LobbyCode;
-            GameInfo.CurrentLobbyId = currentLobby.Id;
+            GameInfo.currentLobbyId = currentLobby.Id;
 
             // 로비 데이터에서 Relay 코드 꺼내기
             string relayJoinCode = currentLobby.Data["RelayJoinCode"].Value;
