@@ -18,4 +18,7 @@ public class GameSettingData
     public Key keyLeft = Key.LeftArrow;
     public Key keyRight = Key.RightArrow;
     public Key keySpike = Key.Enter;
+
+    // 승리 점수
+    public int winningScore = 15;
 }

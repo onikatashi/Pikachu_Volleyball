@@ -41,6 +41,9 @@ public class SettingUIController : MonoBehaviour
     public GameObject keyBindingPanel;              // 키 바인딩 패널
     public TextMeshProUGUI currentKey;              // 현재 키
 
+    [Header("승리 점수 설정")]
+    public TMP_Dropdown scoreDropdown;              // 승리 점수
+
     [Header("설정 종료 버튼")]
     public Button exitSettingBtn;                   // 설정 종료 버튼
 
@@ -57,11 +60,15 @@ public class SettingUIController : MonoBehaviour
         new Vector2Int(1920, 1080)
     };
 
+    // 점수 프리셋
+    private readonly List<int> scoreOptions = new List<int>() { 3, 5, 7, 9, 11, 13, 15 };
+
     private void Start()
     {
         // UI 초기화
         InitResolutionUI();
         UpdateKeyTexts();
+        InitScoreUI();
 
         // 해상도 이벤트 연결
         resolutionDropdown.onValueChanged.AddListener(SetResolution);
@@ -83,6 +90,9 @@ public class SettingUIController : MonoBehaviour
         keyUp.onClick.AddListener(() => StartRebinding("Up"));
         keyDown.onClick.AddListener(() => StartRebinding("Down"));
         keySpike.onClick.AddListener(() => StartRebinding("Spike"));
+
+        // 승리 점수 이벤트 연결
+        scoreDropdown.onValueChanged.AddListener(SetWinningScore);
 
         // 설정 패널 종료 버튼 연결
         exitSettingBtn.onClick.AddListener(ExitSettingPanel);
@@ -294,6 +304,35 @@ public class SettingUIController : MonoBehaviour
         txtUp.text = data.keyUp.ToString();
         txtDown.text = data.keyDown.ToString();
         txtSpike.text = data.keySpike.ToString();
+    }
+
+    private void InitScoreUI()
+    {
+        scoreDropdown.ClearOptions();
+        List<string> options = new List<string>();
+        int currentIndex = 0;
+
+        for (int i = 0; i < scoreOptions.Count; i++)
+        {
+            options.Add($"{scoreOptions[i]} 점");
+
+            // 현재 저장된 설정값과 같다면 선택
+            if (scoreOptions[i] == SaveLoadManager.Instance.settingData.winningScore)
+            {
+                currentIndex = i;
+            }
+        }
+
+        scoreDropdown.AddOptions(options);
+        scoreDropdown.value = currentIndex;
+        scoreDropdown.RefreshShownValue();
+    }
+
+    public void SetWinningScore(int index)
+    {
+        int selectedScore = scoreOptions[index];
+        SaveLoadManager.Instance.settingData.winningScore = selectedScore;
+        SaveLoadManager.Instance.SaveSettingData();
     }
 
     private void ExitSettingPanel()

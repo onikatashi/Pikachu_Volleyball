@@ -36,7 +36,7 @@ public class GameSetupManager : NetworkBehaviour
     // 점수 변수 (NetworkVariable)
     private NetworkVariable<int> p1Score = new NetworkVariable<int>(0);
     private NetworkVariable<int> p2Score = new NetworkVariable<int>(0);
-    private const int WIN_SCORE = 3;
+    private NetworkVariable<int> winScore = new NetworkVariable<int>(15);
 
     private BallController ballController;      // 현재 소환된 공을 기억해둠
     private Transform nextBallPos;              // 다음 게임 시작 됐을 때, 공 위치
@@ -70,7 +70,17 @@ public class GameSetupManager : NetworkBehaviour
         // 플레이어 생성 권한은 호스트(Server)에게만 있음.
         if (IsServer)
         {
-            SpawnBall(); 
+            if(SaveLoadManager.Instance != null)
+            {
+                int settingScore = SaveLoadManager.Instance.settingData.winningScore;
+                winScore.Value = (settingScore > 0) ? settingScore : 15;
+            }
+            else
+            {
+                // 매니저 없으면 기본 값
+                winScore.Value = 15;
+            }
+                SpawnBall(); 
             SpawnPlayers();
             StartCoroutine(StartNewRoundCoroutine());
         }
@@ -236,7 +246,7 @@ public class GameSetupManager : NetworkBehaviour
         // 로직은 서버에서 진행
         if (!IsServer) return;
 
-        if (p1Score.Value >= WIN_SCORE ||  p2Score.Value >= WIN_SCORE) return;
+        if (p1Score.Value >= winScore.Value ||  p2Score.Value >= winScore.Value) return;
 
         if (isScored) return;
 
@@ -259,12 +269,12 @@ public class GameSetupManager : NetworkBehaviour
         }
 
         // 게임 종료 체크
-        if (p1Score.Value >= WIN_SCORE ||  p2Score.Value >= WIN_SCORE)
+        if (p1Score.Value >= winScore.Value ||  p2Score.Value >= winScore.Value)
         {
             SoundManager.Instance.PlaySFX("GameEnd");
 
             // 누가 이겼는지 확인
-            int winnerIndex = (p1Score.Value >= WIN_SCORE ? 0 : 1);
+            int winnerIndex = (p1Score.Value >= winScore.Value ? 0 : 1);
 
             for (int i = 0; i < pikachus.Length; i++)
             {
