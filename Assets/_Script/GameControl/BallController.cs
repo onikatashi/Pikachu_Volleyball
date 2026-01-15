@@ -104,12 +104,15 @@ public class BallController : NetworkBehaviour
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
         if (player == null) return;
 
-        float facingDir = collision.transform.position.x < transform.position.x ? 1f : -1f;
+        Vector2 playerPos = player.transform.position;
+        Vector2 ballPos = transform.position;
+
+        Vector2 hitDir = (ballPos - playerPos).normalized;
 
         // 스파이크 상태일 때
         if (player.isSpike.Value)
         {
-            facingDir = player.transform.localScale.x;
+            float facingDir = player.transform.localScale.x;
 
             // 스파이크 충돌 지점 가져오기
             Vector2 hitPoint = collision.contacts[0].point;
@@ -172,7 +175,7 @@ public class BallController : NetworkBehaviour
 
             // 최종 정규화 및 속도 적용
             rb.linearVelocity = Vector2.zero;   // 기존 속도 제거
-            rb.linearVelocity = spikeDir.normalized * spikeSpeed;     
+            rb.linearVelocity = spikeDir.normalized * spikeSpeed;
         }
         // 일반 타격 (리시브)
         else
@@ -180,7 +183,11 @@ public class BallController : NetworkBehaviour
             SetSprikeEffectClientRpc(false);
 
             rb.linearVelocity = Vector2.zero;
-            rb.linearVelocity = new Vector2(facingDir * hitForwardFroce, hitUpForce);
+
+            float finalX = hitDir.x * hitForwardFroce;
+            float finalY = Mathf.Clamp(hitDir.y, 0.5f, 1f) * hitUpForce;
+
+            rb.linearVelocity = new Vector2(finalX, finalY);
         }
     }
 

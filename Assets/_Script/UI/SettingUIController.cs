@@ -37,6 +37,10 @@ public class SettingUIController : MonoBehaviour
     public TextMeshProUGUI txtDown;                 // 아래 키 텍스트
     public TextMeshProUGUI txtSpike;                // 스파이크 키 텍스트
 
+    [Header("키 변경 패널")]
+    public GameObject keyBindingPanel;              // 키 바인딩 패널
+    public TextMeshProUGUI currentKey;              // 현재 키
+
     [Header("설정 종료 버튼")]
     public Button exitSettingBtn;                   // 설정 종료 버튼
 
@@ -82,6 +86,8 @@ public class SettingUIController : MonoBehaviour
 
         // 설정 패널 종료 버튼 연결
         exitSettingBtn.onClick.AddListener(ExitSettingPanel);
+
+        keyBindingPanel.SetActive(false);
     }
 
     private void Update()
@@ -225,6 +231,17 @@ public class SettingUIController : MonoBehaviour
     {
         currentRebindingKeyName = keyName;
         isRebinding = true;
+        keyBindingPanel.SetActive(true);
+
+        var data = SaveLoadManager.Instance.settingData;
+        switch (currentRebindingKeyName)
+        {
+            case "Left": currentKey.text = data.keyLeft.ToString(); break;
+            case "Right": currentKey.text = data.keyRight.ToString(); break;
+            case "Up": currentKey.text = data.keyUp.ToString(); break;
+            case "Down": currentKey.text = data.keyDown.ToString(); break;
+            case "Spike": currentKey.text = data.keySpike.ToString(); break;
+        }
     }
 
     private void ProcessRebind(Key newKey)
@@ -264,6 +281,7 @@ public class SettingUIController : MonoBehaviour
     private void EndRebinding()
     {
         isRebinding = false;
+        keyBindingPanel.SetActive(false);
         UpdateKeyTexts();
     }
 

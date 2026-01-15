@@ -180,7 +180,7 @@ Rigidbody2D:
   m_Mass: 0.0001
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -222,8 +222,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  hitUpForce: 8.5
-  hitForwardFroce: 5.5
+  hitUpForce: 10
+  hitForwardFroce: 7
   rotationMultiplier: 50
   spikeSpeed: 18
   trailParticle: {fileID: 7312703242343315253}
