@@ -50,7 +50,7 @@ public class MainMenuUIController : MonoBehaviour
         }
 
         // 바로 게임 씬으로 이동
-        SceneLoaderManager.Instance.LoadScene("03_GameScene");
+        SceneLoaderManager.Instance.LoadScene(SceneNames.GAME);
     }
 
     private void ShowMultiplayUI()

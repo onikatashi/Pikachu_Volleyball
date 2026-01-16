@@ -4,6 +4,14 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public static class SceneNames
+{
+    public const string BOOT = "00_BootScene";
+    public const string MAIN_MENU = "01_MainMenuScene";
+    public const string LOBBY = "02_LobbyScene";
+    public const string GAME = "03_GameScene";
+}
+
 public class SceneLoaderManager : MonoBehaviour
 {
     public static SceneLoaderManager Instance;
@@ -43,7 +51,7 @@ public class SceneLoaderManager : MonoBehaviour
         logoImage.alpha = 0f;
         logoImage.gameObject.SetActive(false);
 
-        if (SceneManager.GetActiveScene().name != "00_BootScene")
+        if (SceneManager.GetActiveScene().name != SceneNames.BOOT)
         {
             // 검은 화면이 덮여있으면 걷어내기
             StartCoroutine(FadeOutBlackBackground());
@@ -88,7 +96,7 @@ public class SceneLoaderManager : MonoBehaviour
 
         logoImage.gameObject.SetActive(false);
 
-        SceneManager.LoadScene("01_MainMenuScene");
+        SceneManager.LoadScene(SceneNames.MAIN_MENU);
     }
 
     // 씬 로드 직전에 호출

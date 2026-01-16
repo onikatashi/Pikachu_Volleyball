@@ -105,7 +105,7 @@ public class LobbyManager : MonoBehaviour
             NetworkManager.Singleton.StartHost();
 
             // 로비 씬으로 이동 (Netcode의 씬 전환 기능 사용)
-            NetworkManager.Singleton.SceneManager.LoadScene("02_LobbyScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
+            NetworkManager.Singleton.SceneManager.LoadScene(SceneNames.LOBBY, UnityEngine.SceneManagement.LoadSceneMode.Single);
         }
         catch (LobbyServiceException e)
         {

@@ -141,7 +141,7 @@ public class LobbyUIController : NetworkBehaviour
         }
 
         // 메인 씬 이동
-        SceneLoaderManager.Instance.LoadScene("01_MainMenuScene");
+        SceneLoaderManager.Instance.LoadScene(SceneNames.MAIN_MENU);
     }
 
     // 로비 청소
@@ -213,7 +213,7 @@ public class LobbyUIController : NetworkBehaviour
             }
 
             NetworkManager.Singleton.SceneManager.LoadScene
-                ("03_GameScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
+                (SceneNames.GAME, UnityEngine.SceneManagement.LoadSceneMode.Single);
         }
     }
 
@@ -270,7 +270,7 @@ public class LobbyUIController : NetworkBehaviour
         {
             if (!NetworkManager.Singleton.IsServer)
             {
-                SceneLoaderManager.Instance.LoadScene("01_MainMenuScene");
+                SceneLoaderManager.Instance.LoadScene(SceneNames.MAIN_MENU);
             }
         }
     }

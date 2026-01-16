@@ -295,9 +295,9 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   shadowTransform: {fileID: 8835162859325987402}
   groundY: 0
-  moveSpeed: 6
+  moveSpeed: 7
   jumpForce: 13
-  slideForce: 10
+  slideForce: 12
   slideDuration: 0.5
   spikeDuration: 0.2
   spikeCooldown: 0.5
@@ -323,16 +323,16 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   NetworkTransformExpanded: 1
   AutoOwnerAuthorityTickOffset: 1
-  PositionInterpolationType: 0
+  PositionInterpolationType: 1
   RotationInterpolationType: 0
-  ScaleInterpolationType: 0
+  ScaleInterpolationType: 1
   PositionLerpSmoothing: 1
-  PositionMaxInterpolationTime: 0.1
+  PositionMaxInterpolationTime: 0.02
   RotationLerpSmoothing: 1
   RotationMaxInterpolationTime: 0.1
   ScaleLerpSmoothing: 1
   ScaleMaxInterpolationTime: 0.1
-  AuthorityMode: 0
+  AuthorityMode: 1
   TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
@@ -353,7 +353,7 @@ MonoBehaviour:
   InLocalSpace: 0
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
-  SlerpPosition: 0
+  SlerpPosition: 1
 --- !u!114 &-5501797308477422158
 MonoBehaviour:
   m_ObjectHideFlags: 0
