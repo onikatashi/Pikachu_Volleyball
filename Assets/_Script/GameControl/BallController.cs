@@ -22,9 +22,6 @@ public class BallController : NetworkBehaviour
     public ParticleSystem trailParticle;            // 잔상효과 파티클
     private bool isEffectActive = false;            // 잔상효과가 켜져있는지 체크
 
-
-    private bool isSpikeActive = false;             // 현재 스파이크 상태인지
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -93,7 +90,7 @@ public class BallController : NetworkBehaviour
 
             BallHitEffectClientRpc(hitPoint);
 
-            PlayActionSoundServerRpc("BallGround");
+            PlayActionSoundClientRpc(SfxType.BallGround);
 
             GameSetupManager.Instance.OnBallHitGround(collision.gameObject.name);
         }
@@ -123,7 +120,7 @@ public class BallController : NetworkBehaviour
             SetSprikeEffectClientRpc(true);
 
             // 스파이크 SFX 재생
-            PlayActionSoundServerRpc("BallSpike");
+            PlayActionSoundClientRpc(SfxType.BallSpike);
 
             Vector2 input = player.inputDirection.Value;
             Vector2 spikeDir;
@@ -218,17 +215,11 @@ public class BallController : NetworkBehaviour
         SetActiveClientRpc(isActive);
     }
 
-    [ServerRpc]
-    private void PlayActionSoundServerRpc(string soundName)
-    {
-        PlayActionSoundClientRpc(soundName);
-    }
-
     [ClientRpc]
-    private void PlayActionSoundClientRpc(string soundName)
+    private void PlayActionSoundClientRpc(SfxType sfxType)
     {
         // 소리 재생은 각자 컴퓨터에서 실행됨
-        SoundManager.Instance.PlaySFX(soundName);
+        SoundManager.Instance.PlaySFX(sfxType);
     }
 
     [ClientRpc]

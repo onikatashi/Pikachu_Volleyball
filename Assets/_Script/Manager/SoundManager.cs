@@ -136,6 +136,11 @@ public class SoundManager : MonoBehaviour
         sfxSource.PlayOneShot(sound.clip, finalVolume);
     }
 
+    // PlaySFX 오버로드
+    public void PlaySFX(SfxType sfxType, float volumeScale = 1f)
+    {
+        PlaySFX(sfxType.ToString(), volumeScale);
+    }
 
     // 배경 음악(BGM)을 재생합니다.
     public void PlayBGM(string name, float volumScale = 1f)

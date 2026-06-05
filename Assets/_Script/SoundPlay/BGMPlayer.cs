@@ -6,7 +6,7 @@ public class BGMPlayer : MonoBehaviour
 
     void Start()
     {
-        SoundManager.Instance.PlayBGM(sound.name);
+        SoundManager.Instance.PlayBGM(sound.soundName);
     }
 
 }

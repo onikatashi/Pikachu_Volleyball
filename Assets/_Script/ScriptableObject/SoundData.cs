@@ -14,3 +14,14 @@ public class SoundData : ScriptableObject
     public bool loop = false;       // 반복 재생 여부
     public bool isBGM = false;      // BGM인지 SFX인지 구분
 }
+
+public enum SfxType : byte
+{
+    Jump,
+    Spike,
+    BallGround,
+    BallSpike,
+    GameEnd,
+    Menu,
+    Select
+}

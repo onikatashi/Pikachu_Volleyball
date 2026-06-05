@@ -67,21 +67,11 @@ public class ConnectionManager : MonoBehaviour
     }
 
     // [호스트]: 클라이언트가 사라졌을 때
-    private async void HandleClientQuit(ulong disconnectedClientId)
+    private void HandleClientQuit(ulong disconnectedClientId)
     {
-        // 로비 서비스에서도 사라진 클라이이언트를 지워줘야 함
-        // disconnectedClientId: Netcode ID
-        // 실제로는 Lobby PlayerId와 매핑해둔 정보를 써야함
-        // 1:1 게임이기 때문에 '내가 아닌 다른 한 명'을 지우는 식으로 처리 가능
-
-        string lobbyId = GameInfo.currentLobbyId;
-
         try
         {
-            // 네트워크 세션 정리
             NetworkManager.Singleton.Shutdown();
-
-            // 로비로 이동
             SceneLoaderManager.Instance.LoadScene("02_LobbyScene");
         }
         catch (LobbyServiceException e)

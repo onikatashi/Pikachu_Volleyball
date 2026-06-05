@@ -1,8 +1,6 @@
 using System.Collections;
 using Unity.Netcode;
-using Unity.Netcode.Components;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 
 public class PlayerController : NetworkBehaviour
@@ -206,7 +204,7 @@ public class PlayerController : NetworkBehaviour
 
         if (isGrounded.Value && !isSliding)
         {
-            PlayActionSoundServerRpc("Jump");
+            PlayActionSoundServerRpc(SfxType.Jump);
 
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             isGrounded.Value = false;
@@ -248,7 +246,7 @@ public class PlayerController : NetworkBehaviour
     public IEnumerator Sliding(float direction)
     {
         isSliding = true;
-        PlayActionSoundServerRpc("Jump");
+        PlayActionSoundServerRpc(SfxType.Jump);
         TriggerAnimationPlayServerRpc(hashIsSliding);
 
         // 입력된 방향으로 힘을 가함
@@ -284,7 +282,7 @@ public class PlayerController : NetworkBehaviour
         // 쿨타임 체크 (로컬에서 거름)
         if (Time.time < lastSpikeTime + spikeCooldown) return;
 
-        PlayActionSoundServerRpc("Spike");
+        PlayActionSoundServerRpc(SfxType.Spike);
         Vector2 currentDir = new Vector2(moveDir, yDir);
 
         StartCoroutine(SpikeCoroutine(currentDir));
@@ -366,16 +364,16 @@ public class PlayerController : NetworkBehaviour
     }
 
     [ServerRpc]
-    private void PlayActionSoundServerRpc(string soundName)
+    private void PlayActionSoundServerRpc(SfxType sfxType)
     {
-        PlayActionSoundClientRpc(soundName);
+        PlayActionSoundClientRpc(sfxType);
     }
 
     [ClientRpc]
-    private void PlayActionSoundClientRpc(string soundName)
+    private void PlayActionSoundClientRpc(SfxType sfxType)
     {
         // 소리 재생은 각자 컴퓨터에서 실행됨
-        SoundManager.Instance.PlaySFX(soundName);
+        SoundManager.Instance.PlaySFX(sfxType);
     }
 
     [ClientRpc]

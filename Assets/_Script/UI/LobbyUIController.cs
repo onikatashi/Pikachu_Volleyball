@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
+using Unity.Collections;
 using Unity.Netcode;
 using Unity.Services.Authentication;
 using Unity.Services.Lobbies;
+using Unity.Services.Matchmaker.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -99,19 +101,26 @@ public class LobbyUIController : NetworkBehaviour
 
         UpdateScoreUI(netWinningScore.Value);
         UpdateSideUI(netIsHostLeft.Value);
+
+        NetworkPlayerState.OnPlayerListChanged += RefreshPlayerInfoSubscriptions;
+        NetworkPlayerState.OnPlayerListChanged += UpdatePlayerInfo;
+
+        RefreshPlayerInfoSubscriptions();
+        UpdatePlayerInfo();
     }
 
-    private void OnDestroy()
+    public override void OnNetworkDespawn()
     {
         if (NetworkManager.Singleton != null)
         {
             NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnect;
         }
-    }
+        NetworkPlayerState.OnPlayerListChanged -= RefreshPlayerInfoSubscriptions;
+        NetworkPlayerState.OnPlayerListChanged -= UpdatePlayerInfo;
+        UnsubscribeAllPlayerEvents();
 
-    private void Update()
-    {
-        UpdatePlayerInfo();
+        netWinningScore.OnValueChanged -= OnScoreChanged;
+        netIsHostLeft.OnValueChanged -= OnSideChanged;
     }
 
     private IEnumerator HostAutoReadyCoroutine()
@@ -131,17 +140,18 @@ public class LobbyUIController : NetworkBehaviour
 
         SoundManager.Instance.PlaySFX("Menu");
 
-        // GameData에 적힌 ID를 보고 로비 서비스 정리
-        await CleanUpLobby();
-
-        // 네트워크 종료
-        if (NetworkManager.Singleton != null)
+        try
         {
+            await CleanUpLobby();
             NetworkManager.Singleton.Shutdown();
+            SceneLoaderManager.Instance.LoadScene(SceneNames.MAIN_MENU);
         }
-
-        // 메인 씬 이동
-        SceneLoaderManager.Instance.LoadScene(SceneNames.MAIN_MENU);
+        catch (System.Exception e)
+        {
+            Debug.LogError($"나가기 처리 중 오류: {e.Message}");
+            // 실패해도 씬은 이동시켜야 함
+            SceneLoaderManager.Instance.LoadScene(SceneNames.MAIN_MENU);
+        }
     }
 
     // 로비 청소
@@ -261,7 +271,38 @@ public class LobbyUIController : NetworkBehaviour
             // 플레이어가 2명이고 모두 준비됐으면 활성화
             startButton.interactable = (playerCount == 2 && isAllReady);
         }
+    }
 
+    // 플레이어 입장/퇴장 시마다 호출
+    public void RefreshPlayerInfoSubscriptions()
+    {
+        // 기존 구독 전부 해제 후 재구독 (중복 방지)
+        UnsubscribeAllPlayerEvents();
+
+        foreach (var p in NetworkPlayerState.allPlayers)
+        {
+            p.isReady.OnValueChanged += OnPlayerStateChanged;
+            p.playerName.OnValueChanged += OnPlayerNameChanged;
+        }
+    }
+
+    private void UnsubscribeAllPlayerEvents()
+    {
+        foreach (var p in NetworkPlayerState.allPlayers)
+        {
+            p.isReady.OnValueChanged -= OnPlayerStateChanged;
+            p.playerName.OnValueChanged -= OnPlayerNameChanged;
+        }
+    }
+
+    // 값이 바뀔 때만 호출
+    private void OnPlayerStateChanged(bool oldVal, bool newVal)
+    {
+        UpdatePlayerInfo();
+    }
+    private void OnPlayerNameChanged(FixedString32Bytes oldVal, FixedString32Bytes newVal)
+    {
+        UpdatePlayerInfo();
     }
 
     private void OnClientDisconnect(ulong clientId)

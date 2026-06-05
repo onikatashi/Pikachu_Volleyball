@@ -66,7 +66,7 @@ public class AIController : MonoBehaviour
             return;
         }
 
-        if (GameSetupManager.Instance.isGameOver)
+        if (GameSetupManager.Instance.isGameOver.Value)
         {
             return;
         }

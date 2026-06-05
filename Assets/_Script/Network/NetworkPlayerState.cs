@@ -1,7 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Netcode;
-using UnityEngine;
 
 public class NetworkPlayerState : NetworkBehaviour
 {
@@ -15,6 +15,8 @@ public class NetworkPlayerState : NetworkBehaviour
     // 네트워크 전송 효율과 메모리 최적화
     public NetworkVariable<FixedString32Bytes> playerName = new NetworkVariable<FixedString32Bytes>();
 
+    public static event Action OnPlayerListChanged;
+
     public override void OnNetworkSpawn()
     {
         // 리스트에 나 자신을 추가
@@ -24,6 +26,8 @@ public class NetworkPlayerState : NetworkBehaviour
         {
             SetNicknameServerRpc(GameInfo.myNickname);
         }
+
+        OnPlayerListChanged?.Invoke();
     }
 
     [ServerRpc]
@@ -52,5 +56,7 @@ public class NetworkPlayerState : NetworkBehaviour
     {
         // 리스트에서 나 자신을 제거
         allPlayers.Remove(this);
+
+        OnPlayerListChanged?.Invoke();
     }
 }
