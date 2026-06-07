@@ -16,7 +16,7 @@
 
 ## 개발 환경
 
-- Unity
+- Unity 6.0 LTS
 - C#
 - Unity Netcode for GameObjects
 - Unity Relay / Unity Lobby
