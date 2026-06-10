@@ -1,7 +1,7 @@
 # 피카츄 배구 (Pikachu Volleyball)
 
 > Unity Netcode 기반 1:1 온라인 배구 게임
-> 피카츄 배구 유즈맵을 모방하여 만든 1인 개발 게임
+> 플래시 게임 피카츄 배구를 모방하여 만든 1인 개발 게임
 
 <img width="1532" height="864" alt="image" src="https://github.com/user-attachments/assets/2471282d-caff-40fe-8f00-0eef4db32059" />
 
