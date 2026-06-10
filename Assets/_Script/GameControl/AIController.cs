@@ -250,4 +250,21 @@ public class AIController : MonoBehaviour
         // 오차 추가
         return finalX + Random.Range(-errorMargin, errorMargin);
     }
+
+    private void OnDrawGizmos()
+    {
+        if (ballTransform == null || ballRb == null) return;
+
+        // 예측 낙하 지점
+        float predictedX = PredictLandingX(-2f);
+        Vector3 predictedPos = new Vector3(predictedX, -2f, 0f);
+
+        // 예측 지점 표시
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(predictedPos, 0.3f);
+
+        // AI에서 예측 지점까지 선
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(transform.position, predictedPos);
+    }
 }
