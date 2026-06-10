@@ -3,8 +3,11 @@ using UnityEngine;
 public class AIController : MonoBehaviour
 {
     [Header("AI 설정")]
-    public float reactionDelay = 0.1f;      // 반응 속도
-    public float errorMargin = 0.2f;        // 오차 범위
+    public float reactionDelay = 0.05f;      // 반응 속도
+
+    [Header("점프 타이밍 설정")]
+    public float jumpTriggerHeight = 1.5f;
+    public float jumpHeightOffset = 0.3f;
 
     [Header("맵 정보")]
     private float netXPosition = 0f;
@@ -20,6 +23,25 @@ public class AIController : MonoBehaviour
     private float targetX;
     private float timer = 0f;
     private bool isSecondPlayer = false;    // 내가 2P(오른쪽)인가?
+
+    // 점프 물리 캐시
+    private float gravity;
+    private float jumpForce;
+    private float jumpApexTime;
+    private float jumpApexHeight;
+
+    // 점프 쿨다운
+    private float lastJumpTime = -999f;
+    private const float JUMP_COOLDOWN = 0.3f;
+
+    // ── 예측 위치 고정 ──
+    // 공이 새로 날아올 때마다 한 번만 계산하고, 공이 내 진영에 있는 동안은 유지
+    // 매 틱 재계산하면 오차(Random.Range)가 매번 더해져서 targetX가 흔들림
+    private float lockedTargetX;
+    private bool isTargetLocked = false;
+    private bool wasBallOnMySide = false;    // 이전 프레임에 공이 내 쪽이었는지
+
+    private float prevBallVelX = 0f;
 
     private void Awake()
     {
@@ -47,6 +69,14 @@ public class AIController : MonoBehaviour
             mapMinX = -8.5f;
             mapMaxX = -1.1f;
         }
+
+        float playerGravityScale = (myPlayerController != null && myPlayerController.Rb != null)
+            ? myPlayerController.Rb.gravityScale : 1f;
+        gravity = Mathf.Abs(Physics2D.gravity.y) * playerGravityScale;
+
+        jumpForce = myPlayerController != null ? myPlayerController.jumpForce : 10f;
+        jumpApexTime = jumpForce / gravity;
+        jumpApexHeight = jumpForce * jumpApexTime - 0.5f * gravity * jumpApexTime * jumpApexTime;
     }
 
     // GameSetupManager에서 호출하여 공 정보를 얻어옴
@@ -66,22 +96,19 @@ public class AIController : MonoBehaviour
             return;
         }
 
-        if (GameSetupManager.Instance.isGameOver.Value)
-        {
-            return;
-        }
-
+        if (GameSetupManager.Instance.isGameOver.Value) return;
         if (ballTransform == null || myPlayerController == null) return;
-
-        // 슬라이딩 중이면 AI 판단 중지
-        if (myPlayerController.IsSliding) return;
 
         // 반응 속도 딜레이 체크
         timer += Time.deltaTime;
         if (timer >= reactionDelay)
         {
             CalculateTargetPosition();
-            DecideAction();
+
+            // 슬라이딩 중이 아닐 때만 점프/스파이크/슬라이딩 판단
+            if (!myPlayerController.IsSliding)
+                DecideAction();
+
             timer = 0f;
         }
 
@@ -91,25 +118,62 @@ public class AIController : MonoBehaviour
 
     private void CalculateTargetPosition()
     {
-        // 공이 내 진영 쪽에 있는가
-        bool ballIsOnMySide = isSecondPlayer ? (ballTransform.position.x > 0) : (ballTransform.position.x < 0);
+        bool ballIsOnMySide = isSecondPlayer
+            ? (ballTransform.position.x > 0)
+            : (ballTransform.position.x < 0);
 
-        // 속도 체크 (내 쪽으로 날아오는 중인가?)
-        bool ballComingToMe = isSecondPlayer ? (ballRb.linearVelocity.x > 0.5f) : (ballRb.linearVelocity.x < -0.5f);
+        bool ballComingToMe = isSecondPlayer
+            ? (ballRb.linearVelocity.x > 0.5f)
+            : (ballRb.linearVelocity.x < -0.5f);
 
-        if (ballIsOnMySide || ballComingToMe)
+        float curVelX = ballRb.linearVelocity.x;
+        if (Mathf.Sign(curVelX) != Mathf.Sign(prevBallVelX) && Mathf.Abs(curVelX) > 0.5f)
         {
-            // 낙하 지점 예측
-            float predictedX = PredictLandingX(-2f);
-
-            // 맵 밖으로 나가지 않게 타겟 보정
-            targetX = Mathf.Clamp(predictedX, mapMinX, mapMaxX);
+            isTargetLocked = false;
         }
-        else
+        prevBallVelX = curVelX;
+
+        if (ballIsOnMySide)
         {
-            // 공이 상대방 쪽에 있으면 수비 위치로 복귀
+            // 공이 내 진영에 막 들어왔을 때만 예측 위치 새로 계산
+            if (!wasBallOnMySide || !isTargetLocked)
+            {
+                float predicted = CalculateLandingX();
+                lockedTargetX = Mathf.Clamp(predicted, mapMinX, mapMaxX);
+                isTargetLocked = true;
+            }
+            targetX = lockedTargetX;
+        }
+        else if (ballComingToMe && !isTargetLocked)
+        {
+            // 아직 내 진영은 아니지만 날아오는 중 → 미리 예측해서 이동 준비
+            float predicted = CalculateLandingX();
+            lockedTargetX = Mathf.Clamp(predicted, mapMinX, mapMaxX);
+            isTargetLocked = true;
+            targetX = lockedTargetX;
+        }
+        else if (!ballIsOnMySide && !ballComingToMe)
+        {
+            // 공이 상대방 쪽에 있고 내 쪽으로 오지도 않음 → 락 해제 + 수비 위치로
+            isTargetLocked = false;
             targetX = mybaseX;
         }
+
+        wasBallOnMySide = ballIsOnMySide;
+    }
+
+    // 공의 낙하/도달 위치를 딱 한 번 계산 (오차는 여기서만 더함)
+    private float CalculateLandingX()
+    {
+        // 1순위: 점프 타격 높이에서의 X
+        float strikeY = transform.position.y + jumpTriggerHeight;
+        float strikeX = PredictBallXAtHeight(strikeY);
+        if (strikeX != float.MinValue)
+            return strikeX;
+
+        // 2순위: 바닥 낙하 지점
+        float landX = PredictLandingX(-2f);
+        return PredictLandingX(-2f);
     }
 
     // 이동
@@ -125,8 +189,7 @@ public class AIController : MonoBehaviour
         }
 
         // 방향 결정
-        float dir = Mathf.Sign(xDiff);
-        myPlayerController.Move(dir);
+        myPlayerController.Move(Mathf.Sign(xDiff));
     }
 
     // 행동 결정
@@ -134,85 +197,121 @@ public class AIController : MonoBehaviour
     {
         float distX = Mathf.Abs(ballTransform.position.x - transform.position.x);
         float distY = ballTransform.position.y - transform.position.y;
-
         bool isGrounded = myPlayerController.isGrounded.Value;
 
-        // 스파이크: 점프 중이고 공이 머리 위에 있음
         if (!isGrounded)
         {
-            // 공이 내 타격 범위 안에 들어왔는지 체크
-            if (distX < 1.2f && distY > 0.5f && distY < 2.5f)
-            {
-                // 방향 계산
-                float attackDirX = isSecondPlayer ? -1f : 1f;
-
-                // 상황 판단 변수 계산
-                // 네트와의 거리
-                float distToNet = Mathf.Abs(transform.position.x);
-                // 나의 점프 높이
-                float myHeight = transform.position.y;
-
-                // [아래쪽] 네트에 아주 가까울 때
-                if (distToNet < 1.3f && myHeight > 2.3f)
-                {
-                    myPlayerController.Spike(0f, -1f);
-                    Debug.Log("AI: 아래 스파이크!");
-                }
-
-                // [아래쪽 앞 대각선] 
-                else if (distToNet < 2.5f && myHeight > 2f)
-                {
-                    myPlayerController.Spike(attackDirX, -1f);
-                    Debug.Log("AI: 아래앞 스파이크!");
-                }
-
-                // [앞쪽]
-                else if (distToNet < 5.0f)
-                {
-                    myPlayerController.Spike(attackDirX, 0f);
-                    Debug.Log("AI: 앞 스파이크!");
-                }
-
-                // [위쪽 앞 대각선]
-                else if (distToNet >= 5.0f)
-                {
-                    myPlayerController.Spike(attackDirX, 1f);
-                    Debug.Log("AI: 위앞 스파이크!");
-                }
-
-                // [위쪽]
-                else
-                {
-                    myPlayerController.Spike(0f, 1f);
-                    Debug.Log("AI: 위 스파이크!");
-                }
-
-            }
+            TrySpike(distX, distY);
             return;
         }
 
-        // 슬라이딩: 땅에 있고, 공이 멀고 낮게 옴
-        if (isGrounded && distX > 3f && ballTransform.position.y < -1.1f)
+        // 슬라이딩
+        if (distX > 3f && ballTransform.position.y < 0.0f)
         {
-            bool ballIsInMySide = isSecondPlayer ? (ballTransform.position.x > 0) : (ballTransform.position.x < 0);
+            bool ballIsInMySide = isSecondPlayer
+                ? (ballTransform.position.x > 0)
+                : (ballTransform.position.x < 0);
+
             if (ballIsInMySide)
             {
-                // 공 방향으로 슬라이딩
                 float slideDir = (ballTransform.position.x > transform.position.x) ? 1f : -1f;
-
                 StartCoroutine(myPlayerController.Sliding(slideDir));
+                return;
             }
-            return;
         }
 
-        // 점프: 공이 내 근처 + 높음
-        if (isGrounded)
+        TryJump(distX, distY);
+    }
+
+    private void TryJump(float distX, float distY)
+    {
+        if (Time.time < lastJumpTime + JUMP_COOLDOWN) return;
+        if (distX > 3.0f) return;
+
+        float strikeY = transform.position.y + jumpTriggerHeight;
+
+        if (ballTransform.position.y < strikeY - 0.5f && ballRb.linearVelocity.y <= 0) return;
+
+        float tBallToStrike = TimeForBallToReachHeight(strikeY);
+        if (tBallToStrike < 0) return;
+
+        float tJumpToStrike = TimeForJumpToReachHeight(jumpTriggerHeight);
+        if (tJumpToStrike < 0) return;
+
+        float timeDiff = tBallToStrike - tJumpToStrike;
+
+        if (timeDiff >= 0f && timeDiff <= 0.35f)
         {
-            if (distX <1.5f && distY >2.0f && ballRb.linearVelocity.y < 0)
-            {
-                myPlayerController.HandleJump();
-            }
+            lastJumpTime = Time.time;
+            myPlayerController.HandleJump();
         }
+    }
+
+    private float TimeForBallToReachHeight(float targetY)
+    {
+        float v0y = ballRb.linearVelocity.y;
+        float g = Mathf.Abs(Physics2D.gravity.y * ballRb.gravityScale);
+        float dy = targetY - ballTransform.position.y;
+
+        float a = 0.5f * g;
+        float b = -v0y;
+        float c = dy;
+
+        float discriminant = b * b - 4 * a * c;
+        if (discriminant < 0) return -1f;
+
+        float sqrtD = Mathf.Sqrt(discriminant);
+        float t1 = (-b - sqrtD) / (2 * a);
+        float t2 = (-b + sqrtD) / (2 * a);
+
+        if (t1 > 0 && t2 > 0) return Mathf.Min(t1, t2);
+        if (t1 > 0) return t1;
+        if (t2 > 0) return t2;
+        return -1f;
+    }
+
+    private float TimeForJumpToReachHeight(float relativeHeight)
+    {
+        float a = 0.5f * gravity;
+        float b = -jumpForce;
+        float c = relativeHeight;
+
+        float discriminant = b * b - 4 * a * c;
+        if (discriminant < 0) return -1f;
+
+        float sqrtD = Mathf.Sqrt(discriminant);
+        float t1 = (-b - sqrtD) / (2 * a);
+        float t2 = (-b + sqrtD) / (2 * a);
+
+        if (t1 > 0) return t1;
+        if (t2 > 0) return t2;
+        return -1f;
+    }
+
+    private void TrySpike(float distX, float distY)
+    {
+        if (distX > 1.2f) return;
+        if (distY < 0.3f) return;
+        if (distY > 3.0f) return;
+
+        bool ballComingToMe = isSecondPlayer
+            ? (ballRb.linearVelocity.x >= 0)
+            : (ballRb.linearVelocity.x <= 0);
+
+        if (!ballComingToMe && distX > 0.8f) return;
+
+        float attackDirX = isSecondPlayer ? -1f : 1f;
+        float distToNet = Mathf.Abs(transform.position.x);
+        float myHeight = transform.position.y;
+
+        if (distToNet < 1.3f && myHeight > 2.3f)
+            myPlayerController.Spike(0f, -1f);
+        else if (distToNet < 2.5f && myHeight > 2f)
+            myPlayerController.Spike(attackDirX, -1f);
+        else if (distToNet < 5.0f)
+            myPlayerController.Spike(attackDirX, 0f);
+        else
+            myPlayerController.Spike(attackDirX, 1f);
     }
 
     // 낙하 지점 예측
@@ -222,49 +321,72 @@ public class AIController : MonoBehaviour
         float v0x = ballRb.linearVelocity.x;
         float g = Mathf.Abs(Physics2D.gravity.y * ballRb.gravityScale);
 
-        float distY = ballTransform.position.y - targetY;
+        // 공의 현재 Y에서 targetY까지의 이동 거리
+        // dy = v0y*t - 0.5*g*t^2  =>  0.5g*t^2 - v0y*t + (ballY - targetY) = 0
+        float dy = ballTransform.position.y - targetY;  // ballY - targetY (>0이면 공이 위에 있음)
 
-        // 이미 목표보다 아래에 있으면 현재 X 리턴
-        if (distY < 0) return ballTransform.position.x;
+        float a = 0.5f * g;
+        float b = -v0y;
+        float c = -dy;  // ballY - targetY를 우변으로 이항
 
-        // 근의 공식으로 낙하 시간 계산
-        // h = v0*t + 0.5*g*t^2 => 0.5gt^2 + v0y*t - disty = 0
-        float val = v0y * v0y + 2 * g * distY;
-        if (val < 0) return ballTransform.position.x;       // 허수 방지
+        float discriminant = b * b - 4 * a * c;
+        if (discriminant < 0) return ballTransform.position.x;
 
-        float t = (v0y + Mathf.Sqrt(val)) / g;
+        float sqrtD = Mathf.Sqrt(discriminant);
+        float t1 = (-b - sqrtD) / (2 * a);
+        float t2 = (-b + sqrtD) / (2 * a);
 
-        // 도달 위치 X = x0 + vx * t
-        float finalX =ballTransform.position.x + (v0x * t);
+        // 양수 근 중 큰 값 = 올라갔다가 targetY까지 내려오는 총 시간
+        float t = -1f;
+        if (t1 > 0 && t2 > 0) t = Mathf.Max(t1, t2);
+        else if (t1 > 0) t = t1;
+        else if (t2 > 0) t = t2;
 
-        // 벽 튕김 계산 (간단하게 구현
-        if (finalX > 9f)
-        {
-            finalX = 9f - (finalX - 9f);
-        }
-        if (finalX < -9f)
-        {
-            finalX = -9f - (finalX + 9f);
-        }
+        if (t < 0) return ballTransform.position.x;
 
-        // 오차 추가
-        return finalX + Random.Range(-errorMargin, errorMargin);
+        float finalX = ballTransform.position.x + v0x * t;
+
+        // 벽 튕김 계산
+        if (finalX > 9f) finalX = 9f - (finalX - 9f);
+        if (finalX < -9f) finalX = -9f - (finalX + 9f);
+
+        return finalX;
+    }
+
+    // 공이 특정 높이(절대 좌표)에 있을 때의 X 위치 예측 (오차 미포함 — CalculateLandingX에서 더함)
+    private float PredictBallXAtHeight(float targetY)
+    {
+        float tToHeight = TimeForBallToReachHeight(targetY);
+        if (tToHeight < 0) return float.MinValue;
+
+        float v0x = ballRb.linearVelocity.x;
+        float finalX = ballTransform.position.x + v0x * tToHeight;
+
+        if (finalX > 9f) finalX = 9f - (finalX - 9f);
+        if (finalX < -9f) finalX = -9f - (finalX + 9f);
+
+        return Mathf.Clamp(finalX, mapMinX, mapMaxX);
     }
 
     private void OnDrawGizmos()
     {
         if (ballTransform == null || ballRb == null) return;
 
-        // 예측 낙하 지점
         float predictedX = PredictLandingX(-2f);
         Vector3 predictedPos = new Vector3(predictedX, -2f, 0f);
 
-        // 예측 지점 표시
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(predictedPos, 0.3f);
 
-        // AI에서 예측 지점까지 선
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.blue;
         Gizmos.DrawLine(transform.position, predictedPos);
+
+        float strikeY = transform.position.y + jumpTriggerHeight;
+        float strikeX = PredictBallXAtHeight(strikeY);
+        if (strikeX != float.MinValue)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(new Vector3(strikeX, strikeY, 0f), 0.2f);
+        }
     }
 }

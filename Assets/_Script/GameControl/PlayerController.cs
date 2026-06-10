@@ -7,6 +7,7 @@ public class PlayerController : NetworkBehaviour
 {
     private Animator anim;
     private Rigidbody2D rb;
+    public Rigidbody2D Rb => rb;        // AIController에서 gravityScale 읽기 위해 노출
     private ClientNetworkTransform networkTransform;
 
     [Header("그림자 설정")]
@@ -337,12 +338,8 @@ public class PlayerController : NetworkBehaviour
     private void SetSpikeStateServerRpc(bool state, Vector2 dir)
     {
         isSpike.Value = state;
-
         // 스파이크를 할 때, 방향 정보도 강제 초기화
-        if (state)
-        {
-            inputDirection.Value = dir;
-        }
+        if (state) inputDirection.Value = dir;
     }
 
     [ServerRpc]
